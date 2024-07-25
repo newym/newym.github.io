@@ -25,38 +25,38 @@
 <meta property="og:site_name" content="NEWYM">
 <meta property="og:description" content="unlinkunlink机制的攻击利用： 我们伪造一个fake chunk，修改其fd为p-0x18（p储存堆块指针的地址，一般为bss段),修改bk为p-0x10,绕过保护，在形成双链表的过程中，修改了p-&gt;p-0x18导致我们可以修改p-&gt;任意地址，进行一次任意地址写，可以修改free为system。 伪造形式  伪造堆块的后一堆块的size低位要为0，这样会认为我们伪造的堆块是释">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721896708264.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721892819078.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721898412055.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721893728713.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721895397363.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721895648851.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196075234.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196106407.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196180863.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196229520.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196252198.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196269726.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196295295.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196376804.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196625636.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196930737.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721197085160.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721197127319.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721197191265.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721197212374.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721197236568.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721203278661.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721203433198.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721205459532.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721203641379.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721203665519.png">
-<meta property="og:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721203723030.png">
+<meta property="og:image" content="http://example.com/phto/1721902249398.png">
+<meta property="og:image" content="http://example.com/phto/1721902258842.png">
+<meta property="og:image" content="http://example.com/phto/1721902391041.png">
+<meta property="og:image" content="http://example.com/phto/1721902400175.png">
+<meta property="og:image" content="http://example.com/phto/1721902409108.png">
+<meta property="og:image" content="http://example.com/phto/1721902420223.png">
+<meta property="og:image" content="http://example.com/phto/1721902458602.png">
+<meta property="og:image" content="http://example.com/phto/1721902464672.png">
+<meta property="og:image" content="http://example.com/phto/1721902473666.png">
+<meta property="og:image" content="http://example.com/phto/1721902481952.png">
+<meta property="og:image" content="http://example.com/phto/1721902492107.png">
+<meta property="og:image" content="http://example.com/phto/1721902499090.png">
+<meta property="og:image" content="http://example.com/phto/1721902506238.png">
+<meta property="og:image" content="http://example.com/phto/1721902515323.png">
+<meta property="og:image" content="http://example.com/phto/1721902523130.png">
+<meta property="og:image" content="http://example.com/phto/1721902530132.png">
+<meta property="og:image" content="http://example.com/phto/1721902539830.png">
+<meta property="og:image" content="http://example.com/phto/1721902547094.png">
+<meta property="og:image" content="http://example.com/phto/1721902553039.png">
+<meta property="og:image" content="http://example.com/phto/1721902558028.png">
+<meta property="og:image" content="http://example.com/phto/1721902570878.png">
+<meta property="og:image" content="http://example.com/phto/1721902578094.png">
+<meta property="og:image" content="http://example.com/phto/1721902584179.png">
+<meta property="og:image" content="http://example.com/phto/1721902590434.png">
+<meta property="og:image" content="http://example.com/phto/1721902617665.png">
+<meta property="og:image" content="http://example.com/phto/1721902628266.png">
+<meta property="og:image" content="http://example.com/phto/1721902634281.png">
 <meta property="article:published_time" content="2024-07-25T09:10:48.161Z">
-<meta property="article:modified_time" content="2024-07-25T09:08:57.294Z">
+<meta property="article:modified_time" content="2024-07-25T10:17:16.778Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="c:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721896708264.png">
+<meta name="twitter:image" content="http://example.com/phto/1721902249398.png">
     
     
     <!--- Icon Part-->
@@ -508,8 +508,8 @@
     
         <span class="article-date article-meta-item">
             <i class="fa-regular fa-wrench"></i>&nbsp;
-            <span class="desktop">2024-07-25 17:08:57</span>
-            <span class="mobile">2024-07-25 17:08:57</span>
+            <span class="desktop">2024-07-25 18:17:16</span>
+            <span class="mobile">2024-07-25 18:17:16</span>
             <span class="hover-info">Updated</span>
         </span>
     
@@ -542,15 +542,15 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721896708264.png"
-                      alt="1721896708264"
+                     data-src="/../phto/1721902249398.png"
+                      alt="1721902249398"
                 ></p>
 <p>伪造堆块的后一堆块的size低位要为0，这样会认为我们伪造的堆块是释放的，才能往前合并。</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721892819078.png"
-                      alt="1721892819078"
+                     data-src="/../phto/1721902258842.png"
+                      alt="1721902258842"
                 ></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">首先我们要绕过保护</span><br><span class="line">B-&gt;bk!=chunk0||A-&gt;fd!=chunk0</span><br><span class="line">//此时我们的A=p-0x10   fd=A+0x10   fd=p     (这个fd是A的fd)</span><br><span class="line">//此时我们的B=p-0x18   bk=B+0x18   bk=p    （这个bk是B的bk）</span><br><span class="line">//对应了下面的步骤</span><br><span class="line">chunk0-&gt;fd=p-0x18//这里的p-0x18是我们自己构造的</span><br><span class="line">chunk0-&gt;bk=p-0x10//同理</span><br><span class="line">B-&gt;bk=*（p-0x18+0x18）=*p=chunk0//证明了s=p</span><br><span class="line">A-&gt;fd=*（p+0x10+0x10）=*p=chunk0</span><br><span class="line">//此时*p等于chunk0的话便可以绕过保护</span><br><span class="line"></span><br></pre></td></tr></table></figure></div>
 
@@ -560,98 +560,98 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721898412055.png"
-                      alt="1721898412055"
+                     data-src="/../phto/1721902391041.png"
+                      alt="1721902391041"
                 ></p>
 <p>&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721893728713.png"
-                      alt="1721893728713"
+                     data-src="/../phto/1721902400175.png"
+                      alt="1721902400175"
                 ></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//在使AB构成双链表</span><br><span class="line">B-&gt;bk=A</span><br><span class="line">A-&gt;fd=B</span><br><span class="line">//此时A=p-0x10  B=0x18</span><br><span class="line">//等同于*p=p-0x10</span><br><span class="line">//然后*p=p-0x18</span><br><span class="line">//最终p会指向p-0x18的位置</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721895397363.png"
-                      alt="1721895397363"
+                     data-src="/../phto/1721902409108.png"
+                      alt="1721902409108"
                 ></p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721895648851.png"
-                      alt="1721895648851"
+                     data-src="/../phto/1721902420223.png"
+                      alt="1721902420223"
                 ></p>
 <p>们在读入的时候就会往从p-0x18的位置开始读入，最后覆盖掉读入位置，在进行读入就从*p进行读入，相当于一次任意地址写</p>
 <p>例如我们覆盖到读入位置为atoi函数的got表，</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196075234.png"
-                      alt="1721196075234"
+                     data-src="/../phto/1721902458602.png"
+                      alt="1721902458602"
                 ></p>
 <p>我们下次就会对这里进行修改</p>
 <p>然后读入的内容从</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196106407.png"
-                      alt="1721196106407"
+                     data-src="/../phto/1721902464672.png"
+                      alt="1721902464672"
                 ></p>
 <p>这里读入</p>
 <p>那么我们就可以覆盖got表了</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196180863.png"
-                      alt="1721196180863"
+                     data-src="/../phto/1721902473666.png"
+                      alt="1721902473666"
                 ></p>
 <h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><h2 id="bamboobox"><a href="#bamboobox" class="headerlink" title="bamboobox"></a>bamboobox</h2><p>首先查看保护</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196229520.png"
-                      alt="1721196229520"
+                     data-src="/../phto/1721902481952.png"
+                      alt="1721902481952"
                 ></p>
 <p>64位开启了canary和nx保护</p>
 <p>查看ida</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196252198.png"
-                      alt="1721196252198"
+                     data-src="/../phto/1721902492107.png"
+                      alt="1721902492107"
                 ></p>
 <p>菜单题</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196269726.png"
-                      alt="1721196269726"
+                     data-src="/../phto/1721902499090.png"
+                      alt="1721902499090"
                 ></p>
 <p>show函数内，我们查看一下打印的位置bss1在哪里，这里是我们随后创造第一个堆块的索引位置（重点关注）</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196295295.png"
-                      alt="1721196295295"
+                     data-src="/../phto/1721902506238.png"
+                      alt="1721902506238"
                 ></p>
 <p>查看add函数，创造指定大小堆块，将堆块索引位置放到itemlist的位置，这里我们就知道堆块地址在这个bss段放置了，而且前面的show也是打印itemlist+8的位置</p>
 <p>且add里的read函数也是往itemlist+8的位置读入，也就是对堆块读入内容</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196376804.png"
-                      alt="1721196376804"
+                     data-src="/../phto/1721902515323.png"
+                      alt="1721902515323"
                 ></p>
 <p>在change函数中存存在自己规定大小的堆溢出，可以用于修改后面堆块的pre_size（前一个堆块的大小）size自己堆块的大小（主要改成地位为0，将前一个堆块标记为释放状态）</p>
 <p>free释放函数</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196625636.png"
-                      alt="1721196625636"
+                     data-src="/../phto/1721902523130.png"
+                      alt="1721902523130"
                 ></p>
 <p>思路：</p>
 <p>1.部署堆块（fk&#x3D;itemlist-0x18，bk&#x3D;itemlist-0x10），并设置后一个堆块标识位（size低位为0）</p>
@@ -662,43 +662,44 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721196930737.png"
-                      alt="1721196930737"
+                     data-src="/../phto/1721902530132.png"
+                      alt="1721902530132"
                 ></p>
 <div class="highlight-container" data-rel="Plaintext"><figure class="iseeu highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">target = 0x6020c8  </span><br><span class="line">fd = target - 0x18</span><br><span class="line">bk = target - 0x10</span><br><span class="line">payload = p64(0)+p64(0x81)+p64(fd)+p64(bk)+b&#x27;a&#x27;*0x60+p64(0x80)+p64(0x90)</span><br><span class="line">change(0,payload)</span><br></pre></td></tr></table></figure></div>
 
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721197085160.png"
-                      alt="1721197085160"
+                     data-src="/../phto/1721902539830.png"
+                      alt="1721902539830"
                 ></p>
 <p>然后释放，itemlist+8指向了itemlist-0x18的位置，此时我们读入就从itemlist-0x18读入，可以覆盖到itemlist+8，即可任意读写</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721197127319.png"
-                      alt="1721197127319"
+                     data-src="/../phto/1721902547094.png"
+                      alt="1721902547094"
                 ></p>
 <p>我们读入地址覆盖itemlist+8为atoi</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721197191265.png"
-                      alt="1721197191265"
+                     data-src="/../phto/1721902553039.png"
+                      alt="1721902553039"
                 ></p>
 <p>先打印获得libc地址，找到system地址</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721197212374.png"
-                      alt="1721197212374"
+                     data-src="/../phto/1721902558028.png"
+                      alt="1721902558028"
                 ></p>
-<p>修改atoigot表为system<img  
+<p>修改atoigot表为system</p>
+<p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721197236568.png"
-                      alt="1721197236568"
+                     data-src="/../phto/1721902570878.png"
+                      alt="1721902570878"
                 ></p>
 <p>这时候就成功了</p>
 <p>最终的exp</p>
@@ -708,45 +709,45 @@
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721203278661.png"
-                      alt="1721203278661"
+                     data-src="/../phto/1721902578094.png"
+                      alt="1721902578094"
                 ></p>
 <p>保护全开</p>
 <p>查看ida</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721203433198.png"
-                      alt="1721203433198"
+                     data-src="/../phto/1721902584179.png"
+                      alt="1721902584179"
                 ></p>
 <p>菜单题</p>
 <p>banner函数，存在格式化字符串漏洞，进行泄露程序地址和libc地址</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721205459532.png"
-                      alt="1721205459532"
+                     data-src="/../phto/1721902590434.png"
+                      alt="1721902590434"
                 ></p>
 <p>查看add函数</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721203641379.png"
-                      alt="1721203641379"
+                     data-src="/../phto/1721902617665.png"
+                      alt="1721902617665"
                 ></p>
 <p>delete噶不是故意，释放堆块并清空内容不存在uaf漏洞</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721203665519.png"
-                      alt="1721203665519"
+                     data-src="/../phto/1721902628266.png"
+                      alt="1721902628266"
                 ></p>
 <p>看exit函数</p>
 <p><img  
                      lazyload
                      src="/images/loading.svg"
-                     data-src="C:\Users\22167\AppData\Roaming\Typora\typora-user-images\1721203723030.png"
-                      alt="1721203723030"
+                     data-src="/../phto/1721902634281.png"
+                      alt="1721902634281"
                 ></p>
 <p>思路：</p>
 <p>1.首先泄露程序地址和libc基地址</p>
@@ -770,7 +771,7 @@
         
             <li>
                 <strong>Updated at
-                    :</strong> 2024-07-25 17:08:57
+                    :</strong> 2024-07-25 18:17:16
             </li>
         
         <li>
