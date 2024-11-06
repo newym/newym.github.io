@@ -293,7 +293,8 @@
     
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="unlink"><a href="#unlink" class="headerlink" title="unlink"></a>unlink</h1><p>unlink机制的攻击利用：</p>
+    <p>title: “unlink”<br>date: 2024-11-06 16:18:16<br>tags:</p>
+<p>unlink机制的攻击利用：</p>
 <p>我们伪造一个fake chunk，修改其fd为p-0x18（p储存堆块指针的地址，一般为bss段),修改bk为p-0x10,绕过保护，在形成双链表的过程中，修改了p-&gt;p-0x18导致我们可以修改p-&gt;任意地址，进行一次任意地址写，可以修改free为system。</p>
 <p>伪造形式</p>
 <p><img src="/../phto/1721902249398.png" alt="1721902249398"></p>
