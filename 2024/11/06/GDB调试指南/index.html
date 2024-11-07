@@ -6,16 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>NEWYM</title>
+  <title>pwn GDB调试指南 | NEWYM</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="pwn GDB调试指南最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试 文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项 该文章如果需要会持续更新">
+  <meta name="description" content="最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试 文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项 该文章如果需要会持续更新">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NEWYM">
+<meta property="og:title" content="pwn GDB调试指南">
 <meta property="og:url" content="http://example.com/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="NEWYM">
-<meta property="og:description" content="pwn GDB调试指南最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试 文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项 该文章如果需要会持续更新">
+<meta property="og:description" content="最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试 文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项 该文章如果需要会持续更新">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/phto/1730896346272.png">
 <meta property="og:image" content="http://example.com/phto/1730894068788.png">
@@ -42,10 +42,14 @@
 <meta property="og:image" content="http://example.com/phto/1730897034552.png">
 <meta property="og:image" content="http://example.com/phto/1730897049044.png">
 <meta property="og:image" content="http://example.com/phto/1730897074549.png">
+<meta property="og:image" content="http://example.com/phto/1730964743637.png">
+<meta property="og:image" content="http://example.com/phto/1730964775079.png">
+<meta property="og:image" content="http://example.com/phto/1730964965065.png">
 <meta property="og:image" content="http://example.com/phto/1730897643602.png">
-<meta property="article:published_time" content="2024-11-06T11:23:50.883Z">
-<meta property="article:modified_time" content="2024-11-06T12:56:00.961Z">
+<meta property="article:published_time" content="2024-11-06T08:18:16.000Z">
+<meta property="article:modified_time" content="2024-11-07T08:08:00.168Z">
 <meta property="article:author" content="NEWYM">
+<meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/phto/1730896346272.png">
   
@@ -211,17 +215,65 @@
             <article id="post-GDB调试指南" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
+      <header class="article-header">
+  
+  
+    <h1 class="article-title" itemprop="name">
+      pwn GDB调试指南
+    </h1>
+  
+
+
+  
+  
+        
+        <span id="busuanzi_container_page_pv" style='display:none' class="archive-article-date">
+              <i class="icon-smile icon"></i> 阅读数：<span id="busuanzi_value_page_pv"></span>次
+        </span>
+
+<a href="/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/" class="archive-article-date">
+        <time datetime="2024-11-06T08:18:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-11-06</time>
+</a>
+
+  
+  
+    
+<div style="margin-top:10px;">
+  <span class="post-time">
+    <span class="post-meta-item-icon">
+      <!-- fonts.scss -->
+      <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
+      <i class="icon-statistics"></i>
+      <span class="post-meta-item-text"> 字数统计:</span>
+      <span class="post-count">1.2k字</span>
+    </span>
+  </span>
+
+  <span class="post-time">
+    &nbsp; | &nbsp;
+    <span class="post-meta-item-icon">
+      <i class="icon-book icon"></i>
+      <span class="post-meta-item-text"> 阅读时长≈</span>
+      <span class="post-count">4分</span>
+    </span>
+  </span>
+</div>
+
+
+  
+  </header>
+  
   <div class="article-entry" itemprop="articleBody">
     
-    <h2 id="pwn-GDB调试指南"><a href="#pwn-GDB调试指南" class="headerlink" title="pwn GDB调试指南"></a>pwn GDB调试指南</h2><p>最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试</p>
+    <p>最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试</p>
 <p>文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项</p>
 <p>该文章如果需要会持续更新</p>
 <span id="more"></span>
 
-<h5 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h5><p>GDB是linux下非常好用且强大的调试工具，掌握gdb对于二进制pwn手的学习是入门的要求，能够使让用户在程序运行的过程中观察内部结构与内存的使用情况。</p>
-<h5 id="GDB在pwn中主要帮助你完四个方面："><a href="#GDB在pwn中主要帮助你完四个方面：" class="headerlink" title="GDB在pwn中主要帮助你完四个方面："></a>GDB在pwn中主要帮助你完四个方面：</h5><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.启动程序，按照我们定义的输入进行运行程序（比如exp）</span><br><span class="line">2.可以让被调试的程序停止在我们想要观察的地方（下断点）</span><br><span class="line">3.动态的分析各个程序的走向、寄存器的变化、内存的变化</span><br><span class="line">4.观察程序是否按照自己的预期（exp）所运行从而去调整</span><br></pre></td></tr></table></figure>
+<h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>GDB是linux下非常好用且强大的调试工具，掌握gdb对于二进制pwn手的学习是入门的要求，能够使让用户在程序运行的过程中观察内部结构与内存的使用情况。</p>
+<h3 id="GDB在pwn中主要帮助你完四个方面："><a href="#GDB在pwn中主要帮助你完四个方面：" class="headerlink" title="GDB在pwn中主要帮助你完四个方面："></a>GDB在pwn中主要帮助你完四个方面：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.启动程序，按照我们定义的输入进行运行程序（比如exp）</span><br><span class="line">2.可以让被调试的程序停止在我们想要观察的地方（下断点）</span><br><span class="line">3.动态的分析各个程序的走向、寄存器的变化、内存的变化</span><br><span class="line">4.观察程序是否按照自己的预期（exp）所运行从而去调整</span><br></pre></td></tr></table></figure>
 
-<h5 id="基本指令的掌握"><a href="#基本指令的掌握" class="headerlink" title="基本指令的掌握"></a>基本指令的掌握</h5><p>gdb中的指令其实有很多很多，但我们只需要记住常用的，不要去死记硬背，在调试中慢慢就熟练了，对于不常用的可以做个笔记保存下来（这些是我平时比较常用的，其他可以以后在补充）</p>
+<h2 id="基本指令的掌握"><a href="#基本指令的掌握" class="headerlink" title="基本指令的掌握"></a>基本指令的掌握</h2><p>gdb中的指令其实有很多很多，但我们只需要记住常用的，不要去死记硬背，在调试中慢慢就熟练了，对于不常用的可以做个笔记保存下来（这些是我平时比较常用的，其他可以以后在补充）</p>
 <p>也可以看这个文章学习更多</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/z2812470857/article/details/136056183?ops_request_misc=%7B%22request_id%22:%2200CF056D-EB59-4492-828D-D5FBB3C2999B%22,%22scm%22:%2220140713.130102334..%22%7D&request_id=00CF056D-EB59-4492-828D-D5FBB3C2999B&biz_id=0&utm_medium=distribute.pc_search_result.none-task-blog-2~all~sobaiduend~default-2-136056183-null-null.142%5Ev100%5Epc_search_result_base5&utm_term=gdb%E8%B0%83%E8%AF%95%E6%8C%87%E4%BB%A4&spm=1018.2226.3001.4187">GDB调试命令大全-CSDN博客</a></p>
 <p><img src="/../phto/1730896346272.png" alt="1730896346272"></p>
@@ -231,49 +283,75 @@
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">示例gdb text1</span><br></pre></td></tr></table></figure>
 
 <p><img src="/../phto/1730894068788.png" alt="1730894068788"></p>
-<h5 id="进入gdb模式"><a href="#进入gdb模式" class="headerlink" title="进入gdb模式"></a>进入gdb模式</h5><p><img src="/../phto/1730894082170.png" alt="1730894082170"></p>
-<h5 id="以下在gdb状态下（介绍常用）"><a href="#以下在gdb状态下（介绍常用）" class="headerlink" title="以下在gdb状态下（介绍常用）"></a>以下在gdb状态下（介绍常用）</h5><h5 id="1-直接运行程序-r"><a href="#1-直接运行程序-r" class="headerlink" title="1.直接运行程序 r"></a>1.直接运行程序 r</h5><p>不会进入调试界面，跟直接运行程序差不多</p>
+<h3 id="进入gdb模式"><a href="#进入gdb模式" class="headerlink" title="进入gdb模式"></a>进入gdb模式</h3><p><img src="/../phto/1730894082170.png" alt="1730894082170"></p>
+<h3 id="以下在gdb状态下（介绍常用）"><a href="#以下在gdb状态下（介绍常用）" class="headerlink" title="以下在gdb状态下（介绍常用）"></a>以下在gdb状态下（介绍常用）</h3><h4 id="1-直接运行程序-r"><a href="#1-直接运行程序-r" class="headerlink" title="1.直接运行程序 r"></a>1.直接运行程序 r</h4><p>不会进入调试界面，跟直接运行程序差不多</p>
 <p><img src="/../phto/1730894176421.png" alt="1730894176421"></p>
-<h5 id="2-单补执行运行程序，停在第一执行语句-start"><a href="#2-单补执行运行程序，停在第一执行语句-start" class="headerlink" title="2.单补执行运行程序，停在第一执行语句 start"></a>2.单补执行运行程序，停在第一执行语句 start</h5><p>会进入调试的界面</p>
+<h4 id="2-单补执行运行程序，停在第一执行语句-start"><a href="#2-单补执行运行程序，停在第一执行语句-start" class="headerlink" title="2.单补执行运行程序，停在第一执行语句 start"></a>2.单补执行运行程序，停在第一执行语句 start</h4><p>会进入调试的界面</p>
 <p><img src="/../phto/1730894252150.png" alt="1730894252150"></p>
-<h5 id="3-单步调试next（简写n）"><a href="#3-单步调试next（简写n）" class="headerlink" title="3.单步调试next（简写n）"></a>3.单步调试next（简写n）</h5><p>每进行一次next的话，程序就会对应走一步（c语言级的断点定位）</p>
+<h4 id="3-单步调试next（简写n）"><a href="#3-单步调试next（简写n）" class="headerlink" title="3.单步调试next（简写n）"></a>3.单步调试next（简写n）</h4><p>每进行一次next的话，程序就会对应走一步（c语言级的断点定位）</p>
 <p><img src="/../phto/1730894593005.png" alt="1730894593005"></p>
 <p><img src="/../phto/1730894608909.png" alt="1730894608909"></p>
 <p>每进行一次ni，程序就会对应走一步（汇编级别的断点定位）</p>
 <p><img src="/../phto/1730894688235.png" alt="1730894688235"></p>
 <p><img src="/../phto/1730894695211.png" alt="1730894695211"></p>
 <p>你就明白，要想走的精细一点（慢一点）就用ni，走的快一点用n；比较建议用ni，因为更好观察程序结构与内存的变化</p>
-<h5 id="4-单步调试step（简写s）"><a href="#4-单步调试step（简写s）" class="headerlink" title="4.单步调试step（简写s）"></a>4.单步调试step（简写s）</h5><p>s与si的区别同n与ni</p>
+<h4 id="4-单步调试step（简写s）"><a href="#4-单步调试step（简写s）" class="headerlink" title="4.单步调试step（简写s）"></a>4.单步调试step（简写s）</h4><p>s与si的区别同n与ni</p>
 <p>s与n和si和ni的区别就在于s和s会进入函数的内部</p>
 <p><img src="/../phto/1730894880528.png" alt="1730894880528"></p>
 <p>我们用s，进入了函数的内部，更精确的调试</p>
 <p><img src="/../phto/1730894888552.png" alt="1730894888552"></p>
 <p>用n的话不会进入函数的内部</p>
 <p><img src="/../phto/1730894918984.png" alt="1730894918984"></p>
-<h5 id="5-结束当前函数finish（简写fini）"><a href="#5-结束当前函数finish（简写fini）" class="headerlink" title="5.结束当前函数finish（简写fini）"></a>5.结束当前函数finish（简写fini）</h5><p>与s相反，s是进入函数，finish是跳出这个函数</p>
+<h4 id="5-结束当前函数finish（简写fini）"><a href="#5-结束当前函数finish（简写fini）" class="headerlink" title="5.结束当前函数finish（简写fini）"></a>5.结束当前函数finish（简写fini）</h4><p>与s相反，s是进入函数，finish是跳出这个函数</p>
 <p>此时在puts函数内部</p>
 <p><img src="/../phto/1730895076428.png" alt="1730895076428"></p>
 <p>进行执行finish，跳出函数</p>
 <p><img src="/../phto/1730895096393.png" alt="1730895096393"></p>
-<h5 id="6-设定程序在运行中停止的位置break（简写b）"><a href="#6-设定程序在运行中停止的位置break（简写b）" class="headerlink" title="6.设定程序在运行中停止的位置break（简写b）"></a>6.设定程序在运行中停止的位置break（简写b）</h5><p><img src="/../phto/1730896686246.png" alt="1730896686246"></p>
+<h4 id="6-设定程序在运行中停止的位置break（简写b）"><a href="#6-设定程序在运行中停止的位置break（简写b）" class="headerlink" title="6.设定程序在运行中停止的位置break（简写b）"></a>6.设定程序在运行中停止的位置break（简写b）</h4><p><img src="/../phto/1730896686246.png" alt="1730896686246"></p>
 <p><img src="/../phto/1730896702976.png" alt="1730896702976"></p>
 <p>下断点</p>
 <p><img src="/../phto/1730896728774.png" alt="1730896728774"></p>
 <p>如何c过去就会停在那个位置</p>
 <p><img src="/../phto/1730896750990.png" alt="1730896750990"></p>
-<h5 id="7-继续运行程序continue-c"><a href="#7-继续运行程序continue-c" class="headerlink" title="7.继续运行程序continue&#x2F;c"></a>7.继续运行程序continue&#x2F;c</h5><p>可以跳到断点处如上</p>
+<h4 id="7-继续运行程序continue-c"><a href="#7-继续运行程序continue-c" class="headerlink" title="7.继续运行程序continue&#x2F;c"></a>7.继续运行程序continue&#x2F;c</h4><p>可以跳到断点处如上</p>
 <p>在c让程序继续进行</p>
 <p><img src="/../phto/1730896819345.png" alt="1730896819345"></p>
-<h5 id="8-查看栈中的内容stack"><a href="#8-查看栈中的内容stack" class="headerlink" title="8.查看栈中的内容stack"></a>8.查看栈中的内容stack</h5><p><img src="/../phto/1730896921159.png" alt="1730896921159"></p>
-<h5 id="9-查看地址中的内容以及符号表"><a href="#9-查看地址中的内容以及符号表" class="headerlink" title="9.查看地址中的内容以及符号表"></a>9.查看地址中的内容以及符号表</h5><p>例如栈中的</p>
+<h4 id="8-查看栈中的内容stack"><a href="#8-查看栈中的内容stack" class="headerlink" title="8.查看栈中的内容stack"></a>8.查看栈中的内容stack</h4><p><img src="/../phto/1730896921159.png" alt="1730896921159"></p>
+<h4 id="9-查看地址中的内容以及符号表"><a href="#9-查看地址中的内容以及符号表" class="headerlink" title="9.查看地址中的内容以及符号表"></a>9.查看地址中的内容以及符号表</h4><p>例如栈中的</p>
 <p><img src="/../phto/1730896997512.png" alt="1730896997512"></p>
 <p>用tele查看对应的内容</p>
 <p><img src="/../phto/1730897022425.png" alt="1730897022425"></p>
 <p>或者说看<img src="/../phto/1730897034552.png" alt="1730897034552">的内容</p>
 <p><img src="/../phto/1730897049044.png" alt="1730897049044"></p>
-<h5 id="10-打印值以及地址print（简写p）"><a href="#10-打印值以及地址print（简写p）" class="headerlink" title="10.打印值以及地址print（简写p）"></a>10.打印值以及地址print（简写p）</h5><p><img src="/../phto/1730897074549.png" alt="1730897074549"></p>
+<h4 id="10-打印值以及地址print（简写p）"><a href="#10-打印值以及地址print（简写p）" class="headerlink" title="10.打印值以及地址print（简写p）"></a>10.打印值以及地址print（简写p）</h4><p><img src="/../phto/1730897074549.png" alt="1730897074549"></p>
 <p>前置知识的简略介绍我就到这里了，因为我这篇文章主要是针对题目的调试，网上有对gdb知识以及调试指令的文章很多也都很好，可以多去看看</p>
 <p>gdb指令更加详细的分类与介绍<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ve1kcon/p/17812420.html">https://www.cnblogs.com/ve1kcon/p/17812420.html</a></p>
+<hr>
+<h2 id="介绍如何调试pwn的exp或payload"><a href="#介绍如何调试pwn的exp或payload" class="headerlink" title="介绍如何调试pwn的exp或payload"></a>介绍如何调试pwn的exp或payload</h2><h4 id="gdb-attach"><a href="#gdb-attach" class="headerlink" title="gdb.attach()"></a>gdb.attach()</h4><p>这是pwntools用于在exp脚本方便调试的部分</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">context.terminal = [&quot;tmux&quot;,&quot;splitw&quot;,&quot;-h&quot;]#产生左右分屏，不带的话是上下分屏比较难受</span><br><span class="line">gdb.attach() #放到想要在exp中停止的位置，程序在运行时候会停止在该处进行调试</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../phto/1730964743637.png" alt="1730964743637"></p>
+<p>运行脚本得到</p>
+<p><img src="/../phto/1730964775079.png" alt="1730964775079"></p>
+<p>注意：要在tmux模式下才可以</p>
+<h4 id="安装-tmux"><a href="#安装-tmux" class="headerlink" title="安装 tmux"></a>安装 tmux</h4><h5 id="更新软件包列表："><a href="#更新软件包列表：" class="headerlink" title="更新软件包列表："></a>更新软件包列表：</h5><p> 打开终端并运行以下命令，以确保你的包管理器是最新的：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<h5 id="安装-tmux："><a href="#安装-tmux：" class="headerlink" title="安装 tmux："></a>安装 tmux：</h5><p> 使用以下命令安装 <code>tmux</code>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install tmux</span><br></pre></td></tr></table></figure>
+
+<h5 id="验证安装："><a href="#验证安装：" class="headerlink" title="验证安装："></a>验证安装：</h5><p> 安装完成后，可以通过以下命令检查 <code>tmux</code> 的版本，以确认安装成功：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux -V</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../phto/1730964965065.png" alt="1730964965065"></p>
+<h5 id="启动-tmux："><a href="#启动-tmux：" class="headerlink" title="启动 tmux："></a>启动 <code>tmux</code>：</h5><p>直接终端输入tmux</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tmux</span><br></pre></td></tr></table></figure>
+
+
+
+<p>但是我是不用gdb.attach的，因为毕竟只是pwntools的函数，很多大佬都有自己的函数库将其进行了修饰以及添加各种功能</p>
+<p>我一直在用我学长的函数库</p>
+<p><a target="_blank" rel="noopener" href="https://zikh26.github.io/posts/ad411136.html#debug">https://zikh26.github.io/posts/ad411136.html#debug</a></p>
 <p>进入正题</p>
 <h1 id="ret2text调试"><a href="#ret2text调试" class="headerlink" title="ret2text调试"></a>ret2text调试</h1><p>例题：buuctf 中的rip</p>
 <p>漏洞的重点</p>
@@ -292,7 +370,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/2024/11/06/GDB调试指南/" title="" target="_blank">http://example.com/2024/11/06/GDB调试指南/</a>
+          <a href="http://example.com/2024/11/06/GDB调试指南/" title="pwn GDB调试指南" target="_blank">http://example.com/2024/11/06/GDB调试指南/</a>
         </li>
         
         <li>
@@ -309,7 +387,29 @@
   <div class="article-info article-info-index">
     
     
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
     
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
 
     
 
@@ -374,11 +474,15 @@
 
 <nav id="article-nav">
   
-  
-    <a href="/2024/11/06/unlink/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">UNLINK</div>
-      <i class="icon-circle-right"></i>
+    <a href="/2024/11/06/unlink/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          UNLINK
+        
+      </div>
     </a>
+  
   
 </nav>
 
@@ -417,9 +521,9 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "" -->
+    <!-- id: "pwn GDB调试指南" -->
     var gitment = new Gitment({
-      id: "20241106192350",
+      id: "20241106161816",
       owner: 'NEWYM',
       repo: '评论',
       oauth: {
@@ -675,7 +779,15 @@ body.dark .ipage {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">wp</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">文章</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
             
             <div class="clearfix"></div>
