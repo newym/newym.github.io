@@ -6,16 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>PWN GDB调试指南 | NEWYM</title>
+  <title>PWN题GDB调试指南 | NEWYM</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试 文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项 该文章如果需要会持续更新">
+  <meta name="description" content="最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试，本文多采用白话形式便于新手理解 最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试 作者废话：对于pwn题来说，调试是一个入门的关卡，会调试的pwn学者才算真正的入门pwn，但调试并不是一种技">
 <meta property="og:type" content="article">
-<meta property="og:title" content="PWN GDB调试指南">
+<meta property="og:title" content="PWN题GDB调试指南">
 <meta property="og:url" content="http://example.com/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="NEWYM">
-<meta property="og:description" content="最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试 文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项 该文章如果需要会持续更新">
+<meta property="og:description" content="最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试，本文多采用白话形式便于新手理解 最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试 作者废话：对于pwn题来说，调试是一个入门的关卡，会调试的pwn学者才算真正的入门pwn，但调试并不是一种技">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/phto/1730896346272.png">
 <meta property="og:image" content="http://example.com/phto/1730894068788.png">
@@ -49,6 +49,7 @@
 <meta property="og:image" content="http://example.com/phto/1730983290919.png">
 <meta property="og:image" content="http://example.com/phto/1730983426808.png">
 <meta property="og:image" content="http://example.com/phto/1730983513568.png">
+<meta property="og:image" content="http://example.com/phto/1731058732386.png">
 <meta property="og:image" content="http://example.com/phto/1730897643602.png">
 <meta property="og:image" content="http://example.com/phto/1730984400584.png">
 <meta property="og:image" content="http://example.com/phto/1730984673390.png">
@@ -72,8 +73,25 @@
 <meta property="og:image" content="http://example.com/phto/1731034890211.png">
 <meta property="og:image" content="http://example.com/phto/1731035070774.png">
 <meta property="og:image" content="http://example.com/phto/1731035123127.png">
+<meta property="og:image" content="http://example.com/phto/1731036246981.png">
+<meta property="og:image" content="http://example.com/phto/1731036270357.png">
+<meta property="og:image" content="http://example.com/phto/1731036384027.png">
+<meta property="og:image" content="http://example.com/phto/1731036402726.png">
+<meta property="og:image" content="http://example.com/phto/1731057442074.png">
+<meta property="og:image" content="http://example.com/phto/1731059056822.png">
+<meta property="og:image" content="http://example.com/phto/1731058966202.png">
+<meta property="og:image" content="http://example.com/phto/1731059178719.png">
+<meta property="og:image" content="http://example.com/phto/1731059228538.png">
+<meta property="og:image" content="http://example.com/phto/1731059750132.png">
+<meta property="og:image" content="http://example.com/phto/1731059848427.png">
+<meta property="og:image" content="http://example.com/phto/1731059922071.png">
+<meta property="og:image" content="http://example.com/phto/1731061114003.png">
+<meta property="og:image" content="http://example.com/phto/1731061194779.png">
+<meta property="og:image" content="http://example.com/phto/1731060932986.png">
+<meta property="og:image" content="http://example.com/phto/1731061033448.png">
+<meta property="og:image" content="http://example.com/phto/1731061285569.png">
 <meta property="article:published_time" content="2024-11-06T08:18:16.000Z">
-<meta property="article:modified_time" content="2024-11-08T03:16:36.251Z">
+<meta property="article:modified_time" content="2024-11-08T10:22:44.215Z">
 <meta property="article:author" content="NEWYM">
 <meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
@@ -245,7 +263,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      PWN GDB调试指南
+      PWN题GDB调试指南
     </h1>
   
 
@@ -271,7 +289,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">2.4k字</span>
+      <span class="post-count">3.4k字</span>
     </span>
   </span>
 
@@ -280,7 +298,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">8分</span>
+      <span class="post-count">12分</span>
     </span>
   </span>
 </div>
@@ -291,7 +309,9 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试</p>
+    <p>最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试，本文多采用白话形式便于新手理解</p>
+<p>最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试</p>
+<h3 id="作者废话："><a href="#作者废话：" class="headerlink" title="作者废话："></a>作者废话：</h3><p>对于pwn题来说，调试是一个入门的关卡，会调试的pwn学者才算真正的入门pwn，但调试并不是一种技巧或一种理论并不是一蹴而就或者幡然醒悟，他是我们在学习pwn过程中将我们所学到的理论进行实践并积累经验的过程，你会在调试的过程中发现你学到的哪些知识（例如：栈溢出、shellcode、栈迁移等等）是如何实现的，并感叹前辈们设计出如此精妙的手法进行攻击，在漫漫的学习历程中你会一边觉得调试很无聊总是对着一堆代码进行调试；但同时你又会感觉很有趣，你利用自己一点点构造的程序输入，一点点将程序腐蚀达到了自己想要的效果，像攻城一样，看似坚不可摧的程序其实也不堪一击，pwn的枯燥在于此，pwn的乐趣也在于此，初学者莫要丧气，多尝试多思考。</p>
 <p>文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项</p>
 <p>该文章如果需要会持续更新</p>
 <span id="more"></span>
@@ -353,7 +373,7 @@
 <p>前置知识的简略介绍我就到这里了，因为我这篇文章主要是针对题目的调试，网上有对gdb知识以及调试指令的文章很多也都很好，可以多去看看</p>
 <p>gdb指令更加详细的分类与介绍<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ve1kcon/p/17812420.html">https://www.cnblogs.com/ve1kcon/p/17812420.html</a></p>
 <h4 id="在gdb调试中一般要注意三个区域"><a href="#在gdb调试中一般要注意三个区域" class="headerlink" title="在gdb调试中一般要注意三个区域"></a>在gdb调试中一般要注意三个区域</h4><p>区域1：当前状态下各个寄存器中存储的值（我称之为寄存器区）</p>
-<p>区域2：当前执行步骤所执行的汇编指令以及该指令附近的汇编语句（我称为汇编区）</p>
+<p>区域2：当前执行步骤所执行的汇编指令以及该指令附近的汇编语句（我称为程序汇编区）</p>
 <p>区域3：从rsp往下部分栈中的情况（我称为栈区）</p>
 <p><img src="/../phto/1731033179021.png" alt="1731033179021"></p>
 <hr>
@@ -397,6 +417,9 @@
 
 <p>就可以直接运行程序</p>
 <p><img src="/../phto/1730983513568.png" alt="1730983513568"></p>
+<p>你可以把想要下的断点直接下在exp中debug中</p>
+<p>例如</p>
+<p><img src="/../phto/1731058732386.png" alt="1731058732386"></p>
 <hr>
 <p>接下来讲述本文正题</p>
 <h1 id="ret2text调试"><a href="#ret2text调试" class="headerlink" title="ret2text调试"></a>ret2text调试</h1><h3 id="前言：-1"><a href="#前言：-1" class="headerlink" title="前言："></a>前言：</h3><p>ret2text为pwn中最基本的入门题，一般都会给出后门函数，主要注重的是对栈溢出的理解，当读入的内容大小超过读入位置（栈上）设定的内存大小就会造成栈溢出，导致覆盖到返回地址</p>
@@ -408,7 +431,7 @@
 <h5 id="调试注意点："><a href="#调试注意点：" class="headerlink" title="调试注意点："></a>调试注意点：</h5><p>1.读入位置（距离栈底rbp的偏移）</p>
 <p>2.覆盖栈的情况</p>
 <p>3.是否覆盖到返回地址（rbp的下方）</p>
-<p>4.后门函数是否需要栈对齐</p>
+<p>4.调试后门函数是否需要栈对齐</p>
 <h5 id="例题：buuctf-中的rip"><a href="#例题：buuctf-中的rip" class="headerlink" title="例题：buuctf 中的rip"></a>例题：buuctf 中的rip</h5><p>漏洞的重点</p>
 <p><img src="/../phto/1730897643602.png" alt="1730897643602"></p>
 <p>gets函数在遇到回车符\n之前是不限制读入的，所以存在栈溢出</p>
@@ -469,7 +492,49 @@
 <p>读入后，现在已经把rbp覆盖了，在往后读就是返回地址了</p>
 <p><img src="/../phto/1731035070774.png" alt="1731035070774"></p>
 <p><img src="/../phto/1731035123127.png" alt="1731035123127"></p>
-<p>在读入覆盖返回地址</p>
+<h5 id="3-查看是否覆盖了返回地址"><a href="#3-查看是否覆盖了返回地址" class="headerlink" title="3.查看是否覆盖了返回地址"></a>3.查看是否覆盖了返回地址</h5><p>在读入覆盖返回地址</p>
+<p><img src="/../phto/1731036246981.png" alt="1731036246981"></p>
+<p>fun的地址希望你们已经会找了</p>
+<p><img src="/../phto/1731036270357.png" alt="1731036270357"></p>
+<p>读入后，就把rbp下方覆盖掉了（返回地址）</p>
+<p><img src="/../phto/1731036384027.png" alt="1731036384027"></p>
+<p><img src="/../phto/1731036402726.png" alt="1731036402726"></p>
+<p>覆盖返回地址后，查看一下运行的效果</p>
+<p>（你要记住，这个在return处查看只是对于最基本的ret2text，你要多思考为啥会在这里进行返回，这不是一种固定思维，你要多思考，建议把leave ret搞清楚，以后的题并不是都是填充在rbp下面就是返回地址的）</p>
+<p>​	<img src="/../phto/1731057442074.png" alt="1731057442074"></p>
+<p>跳到断点处，其实你也可以直接ni过去查看程序走向就行</p>
+<p>覆盖返回地址前的效果</p>
+<p><img src="/../phto/1731059056822.png" alt="1731059056822"></p>
+<p>覆盖后，你会发现后续的程序走向已经被改变，改变成我们刚刚覆盖的返回地址（后门函数的位置）</p>
+<p><img src="/../phto/1731058966202.png" alt="1731058966202"></p>
+<p><img src="/../phto/1731059178719.png" alt="1731059178719"></p>
+<p><img src="/../phto/1731059228538.png" alt="1731059228538"></p>
+<p>好了，不要以为这就结束了，你别忘了还有第四步，调试返回地址后程序能否正常执行完会不会卡住，是否需要栈对齐</p>
+<h5 id="4-查看执行system-‘-bin-sh’-是否需要栈对齐"><a href="#4-查看执行system-‘-bin-sh’-是否需要栈对齐" class="headerlink" title="4.查看执行system(‘&#x2F;bin&#x2F;sh’)是否需要栈对齐"></a>4.查看执行system(‘&#x2F;bin&#x2F;sh’)是否需要栈对齐</h5><p>现在的情况是吧返回地址覆盖为后门函数后</p>
+<p>依旧跳到刚刚那个位置</p>
+<p><img src="/../phto/1731059750132.png" alt="1731059750132"></p>
+<p>然后用ni一步步执行汇编</p>
+<p>查看程序执行流的情况，会不会卡在哪里</p>
+<p>执行到这里按道理来说就要获得shell（得到目标权限）了，system(‘&#x2F;bin&#x2F;sh’)参数也正确，但是我们在ni一下你会发现</p>
+<p><img src="/../phto/1731059848427.png" alt="1731059848427"></p>
+<p>程序卡在了这个汇编指令（xmm 寄存器要求内存地址对齐，对齐由内存位数决定，本文中为16字节对齐。）</p>
+<p><img src="/../phto/1731059922071.png" alt="1731059922071"></p>
+<p>对于这种情况的话我们不能直接执行system(‘&#x2F;bin&#x2F;sh’)</p>
+<p>我们要现执行一次ret进行栈对齐</p>
+<p>ret可以直接去ida中</p>
+<p><img src="/../phto/1731061114003.png" alt="1731061114003"></p>
+<p>也可以用ROPgadget –binary 程序 | grep ‘ret’</p>
+<p><img src="/../phto/1731061194779.png" alt="1731061194779"></p>
+<p>稍微改动一下exp</p>
+<p><img src="/../phto/1731060932986.png" alt="1731060932986"></p>
+<p>这样你在尝试调试一下你就会发现可以绕过那个命令，具体想要搞清楚为什么，去学学栈对齐</p>
+<p><img src="/../phto/1731061033448.png" alt="1731061033448"></p>
+<p>然后你就会发现程序可以正常执行完了</p>
+<p>这就是大致ret2text的调试过程，如有什么问题后续会在补充</p>
+<p><img src="/../phto/1731061285569.png" alt="1731061285569"></p>
+<p>最终的exp</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from tools import *</span><br><span class="line">context(arch=&#x27;amd64&#x27;, os=&#x27;linux&#x27;, log_level=&#x27;debug&#x27;)</span><br><span class="line">p=process(&quot;./text1&quot;)</span><br><span class="line">fun=0x401186</span><br><span class="line">ret=0x401185</span><br><span class="line">payload=b&#x27;a&#x27;*(0xf+8)+p64(ret)+p64(fun)</span><br><span class="line">debug(p,0x040117F)</span><br><span class="line"></span><br><span class="line">p.sendlineafter(&quot;please input&quot;,payload)</span><br><span class="line">p.interactive()</span><br></pre></td></tr></table></figure>
+
 
     
 
@@ -484,7 +549,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/2024/11/06/GDB调试指南/" title="PWN GDB调试指南" target="_blank">http://example.com/2024/11/06/GDB调试指南/</a>
+          <a href="http://example.com/2024/11/06/GDB调试指南/" title="PWN题GDB调试指南" target="_blank">http://example.com/2024/11/06/GDB调试指南/</a>
         </li>
         
         <li>
@@ -635,7 +700,7 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "PWN GDB调试指南" -->
+    <!-- id: "PWN题GDB调试指南" -->
     var gitment = new Gitment({
       id: "20241106161816",
       owner: 'NEWYM',
