@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>pwn GDB调试指南 | NEWYM</title>
+  <title>PWN GDB调试指南 | NEWYM</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   <meta name="description" content="最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试 文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项 该文章如果需要会持续更新">
 <meta property="og:type" content="article">
-<meta property="og:title" content="pwn GDB调试指南">
+<meta property="og:title" content="PWN GDB调试指南">
 <meta property="og:url" content="http://example.com/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/index.html">
 <meta property="og:site_name" content="NEWYM">
 <meta property="og:description" content="最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试 文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项 该文章如果需要会持续更新">
@@ -42,12 +42,38 @@
 <meta property="og:image" content="http://example.com/phto/1730897034552.png">
 <meta property="og:image" content="http://example.com/phto/1730897049044.png">
 <meta property="og:image" content="http://example.com/phto/1730897074549.png">
+<meta property="og:image" content="http://example.com/phto/1731033179021.png">
 <meta property="og:image" content="http://example.com/phto/1730964743637.png">
 <meta property="og:image" content="http://example.com/phto/1730964775079.png">
 <meta property="og:image" content="http://example.com/phto/1730964965065.png">
+<meta property="og:image" content="http://example.com/phto/1730983290919.png">
+<meta property="og:image" content="http://example.com/phto/1730983426808.png">
+<meta property="og:image" content="http://example.com/phto/1730983513568.png">
 <meta property="og:image" content="http://example.com/phto/1730897643602.png">
+<meta property="og:image" content="http://example.com/phto/1730984400584.png">
+<meta property="og:image" content="http://example.com/phto/1730984673390.png">
+<meta property="og:image" content="http://example.com/phto/1730984708556.png">
+<meta property="og:image" content="http://example.com/phto/1730984746727.png">
+<meta property="og:image" content="http://example.com/phto/1730984876418.png">
+<meta property="og:image" content="http://example.com/phto/1730985051126.png">
+<meta property="og:image" content="http://example.com/phto/1730985288366.png">
+<meta property="og:image" content="http://example.com/phto/1731032925306.png">
+<meta property="og:image" content="http://example.com/phto/1731033052671.png">
+<meta property="og:image" content="http://example.com/phto/1731033041338.png">
+<meta property="og:image" content="http://example.com/phto/1731033490033.png">
+<meta property="og:image" content="http://example.com/phto/1731033552832.png">
+<meta property="og:image" content="http://example.com/phto/1731033626333.png">
+<meta property="og:image" content="http://example.com/phto/1731034066389.png">
+<meta property="og:image" content="http://example.com/phto/1731034355154.png">
+<meta property="og:image" content="http://example.com/phto/1731034330679.png">
+<meta property="og:image" content="http://example.com/phto/1731034486225.png">
+<meta property="og:image" content="http://example.com/phto/1731034609326.png">
+<meta property="og:image" content="http://example.com/phto/1731034635785.png">
+<meta property="og:image" content="http://example.com/phto/1731034890211.png">
+<meta property="og:image" content="http://example.com/phto/1731035070774.png">
+<meta property="og:image" content="http://example.com/phto/1731035123127.png">
 <meta property="article:published_time" content="2024-11-06T08:18:16.000Z">
-<meta property="article:modified_time" content="2024-11-07T08:08:00.168Z">
+<meta property="article:modified_time" content="2024-11-08T03:16:36.251Z">
 <meta property="article:author" content="NEWYM">
 <meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
@@ -219,7 +245,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      pwn GDB调试指南
+      PWN GDB调试指南
     </h1>
   
 
@@ -245,7 +271,7 @@
       <!-- 百度字体平台:http://fontstore.baidu.com/static/editor/index.html -->
       <i class="icon-statistics"></i>
       <span class="post-meta-item-text"> 字数统计:</span>
-      <span class="post-count">1.2k字</span>
+      <span class="post-count">2.4k字</span>
     </span>
   </span>
 
@@ -254,7 +280,7 @@
     <span class="post-meta-item-icon">
       <i class="icon-book icon"></i>
       <span class="post-meta-item-text"> 阅读时长≈</span>
-      <span class="post-count">4分</span>
+      <span class="post-count">8分</span>
     </span>
   </span>
 </div>
@@ -270,7 +296,7 @@
 <p>该文章如果需要会持续更新</p>
 <span id="more"></span>
 
-<h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>GDB是linux下非常好用且强大的调试工具，掌握gdb对于二进制pwn手的学习是入门的要求，能够使让用户在程序运行的过程中观察内部结构与内存的使用情况。</p>
+<h2 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h2><p>GDB是linux下非常好用且强大的调试工具，能够使让用户在程序运行的过程中观察内部结构与内存的使用情况，掌握gdb对于二进制pwn手的学习是入门的要求。</p>
 <h3 id="GDB在pwn中主要帮助你完四个方面："><a href="#GDB在pwn中主要帮助你完四个方面：" class="headerlink" title="GDB在pwn中主要帮助你完四个方面："></a>GDB在pwn中主要帮助你完四个方面：</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">1.启动程序，按照我们定义的输入进行运行程序（比如exp）</span><br><span class="line">2.可以让被调试的程序停止在我们想要观察的地方（下断点）</span><br><span class="line">3.动态的分析各个程序的走向、寄存器的变化、内存的变化</span><br><span class="line">4.观察程序是否按照自己的预期（exp）所运行从而去调整</span><br></pre></td></tr></table></figure>
 
 <h2 id="基本指令的掌握"><a href="#基本指令的掌握" class="headerlink" title="基本指令的掌握"></a>基本指令的掌握</h2><p>gdb中的指令其实有很多很多，但我们只需要记住常用的，不要去死记硬背，在调试中慢慢就熟练了，对于不常用的可以做个笔记保存下来（这些是我平时比较常用的，其他可以以后在补充）</p>
@@ -326,6 +352,10 @@
 <h4 id="10-打印值以及地址print（简写p）"><a href="#10-打印值以及地址print（简写p）" class="headerlink" title="10.打印值以及地址print（简写p）"></a>10.打印值以及地址print（简写p）</h4><p><img src="/../phto/1730897074549.png" alt="1730897074549"></p>
 <p>前置知识的简略介绍我就到这里了，因为我这篇文章主要是针对题目的调试，网上有对gdb知识以及调试指令的文章很多也都很好，可以多去看看</p>
 <p>gdb指令更加详细的分类与介绍<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ve1kcon/p/17812420.html">https://www.cnblogs.com/ve1kcon/p/17812420.html</a></p>
+<h4 id="在gdb调试中一般要注意三个区域"><a href="#在gdb调试中一般要注意三个区域" class="headerlink" title="在gdb调试中一般要注意三个区域"></a>在gdb调试中一般要注意三个区域</h4><p>区域1：当前状态下各个寄存器中存储的值（我称之为寄存器区）</p>
+<p>区域2：当前执行步骤所执行的汇编指令以及该指令附近的汇编语句（我称为汇编区）</p>
+<p>区域3：从rsp往下部分栈中的情况（我称为栈区）</p>
+<p><img src="/../phto/1731033179021.png" alt="1731033179021"></p>
 <hr>
 <h2 id="介绍如何调试pwn的exp或payload"><a href="#介绍如何调试pwn的exp或payload" class="headerlink" title="介绍如何调试pwn的exp或payload"></a>介绍如何调试pwn的exp或payload</h2><h4 id="gdb-attach"><a href="#gdb-attach" class="headerlink" title="gdb.attach()"></a>gdb.attach()</h4><p>这是pwntools用于在exp脚本方便调试的部分</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">context.terminal = [&quot;tmux&quot;,&quot;splitw&quot;,&quot;-h&quot;]#产生左右分屏，不带的话是上下分屏比较难受</span><br><span class="line">gdb.attach() #放到想要在exp中停止的位置，程序在运行时候会停止在该处进行调试</span><br></pre></td></tr></table></figure>
@@ -351,11 +381,95 @@
 
 <p>但是我是不用gdb.attach的，因为毕竟只是pwntools的函数，很多大佬都有自己的函数库将其进行了修饰以及添加各种功能</p>
 <p>我一直在用我学长的函数库</p>
+<h4 id="tools库"><a href="#tools库" class="headerlink" title="tools库"></a>tools库</h4><p>功能很多不在此介绍，本文主要讲述gdb调试，感兴趣的可以自行了解</p>
 <p><a target="_blank" rel="noopener" href="https://zikh26.github.io/posts/ad411136.html#debug">https://zikh26.github.io/posts/ad411136.html#debug</a></p>
-<p>进入正题</p>
-<h1 id="ret2text调试"><a href="#ret2text调试" class="headerlink" title="ret2text调试"></a>ret2text调试</h1><p>例题：buuctf 中的rip</p>
-<p>漏洞的重点</p>
+<p>稍微介绍一下这个库</p>
+<p><img src="/../phto/1730983290919.png" alt="1730983290919"></p>
+<p>调试的时候扔要在tmux模式下进行，只支撑python3运行</p>
+<p>想要调试的时候</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 exp</span><br></pre></td></tr></table></figure>
+
+<p><img src="/../phto/1730983426808.png" alt="1730983426808"></p>
+<p>会进入分三屏的操作</p>
+<p>当不想用调试模式的时候，无需进入exp中将debug（p)注释</p>
+<p>只需要</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 exp 2</span><br></pre></td></tr></table></figure>
+
+<p>就可以直接运行程序</p>
+<p><img src="/../phto/1730983513568.png" alt="1730983513568"></p>
+<hr>
+<p>接下来讲述本文正题</p>
+<h1 id="ret2text调试"><a href="#ret2text调试" class="headerlink" title="ret2text调试"></a>ret2text调试</h1><h3 id="前言：-1"><a href="#前言：-1" class="headerlink" title="前言："></a>前言：</h3><p>ret2text为pwn中最基本的入门题，一般都会给出后门函数，主要注重的是对栈溢出的理解，当读入的内容大小超过读入位置（栈上）设定的内存大小就会造成栈溢出，导致覆盖到返回地址</p>
+<p>（简略：只针对于ret2text的话，你读入能覆盖到rbp下方就行，哪里就是返回地址）</p>
+<h5 id="具备知识："><a href="#具备知识：" class="headerlink" title="具备知识："></a>具备知识：</h5><p>1.栈溢出</p>
+<p>2.寄存器(重点是rsp栈顶寄存器，rbp栈底寄存器)</p>
+<p>3.汇编指令（建议理解好leave，ret的含义以及函数中参数对应的意义）</p>
+<p>4.栈对齐(执行system(“&#x2F;bin&#x2F;sh”)有时会因为没有栈对齐而导致无法通过，需要在返回地址处先进行一次ret在跳到后门函数)</p>
+<h5 id="调试注意点："><a href="#调试注意点：" class="headerlink" title="调试注意点："></a>调试注意点：</h5><p>1.读入位置（距离栈底rbp的偏移）</p>
+<p>2.覆盖栈的情况</p>
+<p>3.是否覆盖到返回地址（rbp的下方）</p>
+<p>4.后门函数是否需要栈对齐</p>
+<h5 id="例题：buuctf-中的rip"><a href="#例题：buuctf-中的rip" class="headerlink" title="例题：buuctf 中的rip"></a>例题：buuctf 中的rip</h5><p>漏洞的重点</p>
 <p><img src="/../phto/1730897643602.png" alt="1730897643602"></p>
+<p>gets函数在遇到回车符\n之前是不限制读入的，所以存在栈溢出</p>
+<h5 id="1-然后第一步查看读入位置（距离栈底rbp的距离）"><a href="#1-然后第一步查看读入位置（距离栈底rbp的距离）" class="headerlink" title="1.然后第一步查看读入位置（距离栈底rbp的距离）"></a>1.然后第一步查看读入位置（距离栈底rbp的距离）</h5><p>可以在ida中粗略的看一下，但建议在gdb中好好看看，增加理解，后期的对于栈溢出的话直接看ida差不多就行</p>
+<p>在ida中看</p>
+<p><img src="/../phto/1730984400584.png" alt="1730984400584"></p>
+<p>在gdb中看</p>
+<p>因为该题的话只有一次读入，用exp中的调试（gdb.attach）会直接进入到读入函数</p>
+<p><img src="/../phto/1730984673390.png" alt="1730984673390"></p>
+<p>而不太好看读入位置</p>
+<p>我直接用gdb启动了，然后下断点</p>
+<p>先找到我们要查看的函数</p>
+<p><img src="/../phto/1730984708556.png" alt="1730984708556"></p>
+<p>在ida中用tab键和空格找到这个位置，这个地址就是我们要停在的位置</p>
+<p><img src="/../phto/1730984746727.png" alt="1730984746727"></p>
+<p>然后启动程序（后续不会在写这一步了）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gdb 目标程序</span><br><span class="line">start </span><br></pre></td></tr></table></figure>
+
+<p>下断点到gets函数利用 b *0x401162（记得加个0x转化为16进制，ida那个地址是16进制的）</p>
+<p><img src="/../phto/1730984876418.png" alt="1730984876418"></p>
+<p> 其实也可以直接用b gets去定位，但是会进入函数中，该题不建议</p>
+<p>下好断点直接c过去就行，下面是c过去的效果，正好停在了我们想要看的函数</p>
+<p><img src="/../phto/1730985051126.png" alt="1730985051126"></p>
+<p>每个函数的参数要求是不同的，对于gets函数的话rdi的位置存储的是读入位置</p>
+<p><img src="/../phto/1730985288366.png" alt="1730985288366"></p>
+<p>stack 30一下，我们算一下读入位置距离rbp的大小</p>
+<p><img src="/../phto/1731032925306.png" alt="1731032925306"></p>
+<p>当然可以直接看rbp寄存器（寄存器区），但我觉得直接看栈更形象</p>
+<p><img src="/../phto/1731033052671.png" alt="1731033052671"></p>
+<p>利用x&#x2F;gx  地址1-地址2（一般地址1为大地址）计算偏移</p>
+<p>x&#x2F;gx该指令可以记住，有其他计算指令，我挺喜欢用的</p>
+<p><img src="/../phto/1731033041338.png" alt="1731033041338"></p>
+<p><img src="/../phto/1731033490033.png" alt="1731033490033"></p>
+<p>计算得到偏移0xf，与ida中查看的一样，所以我们一般看读入位置与rbp的偏移可以直接在ida中看</p>
+<p><img src="/../phto/1731033552832.png" alt="1731033552832"></p>
+<p><img src="/../phto/1731033626333.png" alt="1731033626333"></p>
+<p>现在完成第一步了，我写的比较详细，便于新生理解</p>
+<h6 id="简略：对于ret2text来说，直接看ida中距离rbp的偏移即可找到需要读入的大小"><a href="#简略：对于ret2text来说，直接看ida中距离rbp的偏移即可找到需要读入的大小" class="headerlink" title="简略：对于ret2text来说，直接看ida中距离rbp的偏移即可找到需要读入的大小"></a>简略：对于ret2text来说，直接看ida中距离rbp的偏移即可找到需要读入的大小</h6><h5 id="2-覆盖栈的情况"><a href="#2-覆盖栈的情况" class="headerlink" title="2.覆盖栈的情况"></a>2.覆盖栈的情况</h5><p>我们已经找到偏移大小了，那么我们就可以读入内容覆盖返回地址了（偏移为0xf）</p>
+<p>我们先读入0xf的内容看覆盖栈的效果</p>
+<p>读入前</p>
+<p><img src="/../phto/1731034066389.png" alt="1731034066389"></p>
+<p>读入0xf（15）个a后（0x61对应的acill码代表a）</p>
+<p>马上覆盖到rbp了</p>
+<p><img src="/../phto/1731034355154.png" alt="1731034355154"></p>
+<p>用x&#x2F;8gx 看字节更加详细，现在马上到rbp，如果我们在多读一个字节呢</p>
+<p><img src="/../phto/1731034330679.png" alt="1731034330679"></p>
+<p><img src="/../phto/1731034486225.png" alt="1731034486225"></p>
+<p>读入了0x10（16）个a后，rbp被写入了一个字节</p>
+<p><img src="/../phto/1731034609326.png" alt="1731034609326"></p>
+<p><img src="/../phto/1731034635785.png" alt="1731034635785"></p>
+<p>现在我们就可以填充rbp</p>
+<p>记住那个偏移0xf是到rbp的位置，你的目标是rbp下方，所以填充rbp</p>
+<p>而64位程序下rbp是8个字节，32位程序下ebp是4个字节（32位程序下栈底寄存器是ebp）</p>
+<p>所以你想要覆盖到返回地址就要<br>$$<br>覆盖rbp大小&#x3D;距离rbp（或ebp）的偏移+rbp（或ebp）的大小<br>$$</p>
+<p>$$<br>覆盖返回地址大小&#x3D;覆盖rbp大小+控制返回地址的大小<br>$$</p>
+<p>读入覆盖rbp的大小，查看覆盖rbp效果</p>
+<p><img src="/../phto/1731034890211.png" alt="1731034890211"></p>
+<p>读入后，现在已经把rbp覆盖了，在往后读就是返回地址了</p>
+<p><img src="/../phto/1731035070774.png" alt="1731035070774"></p>
+<p><img src="/../phto/1731035123127.png" alt="1731035123127"></p>
+<p>在读入覆盖返回地址</p>
 
     
 
@@ -370,7 +484,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/2024/11/06/GDB调试指南/" title="pwn GDB调试指南" target="_blank">http://example.com/2024/11/06/GDB调试指南/</a>
+          <a href="http://example.com/2024/11/06/GDB调试指南/" title="PWN GDB调试指南" target="_blank">http://example.com/2024/11/06/GDB调试指南/</a>
         </li>
         
         <li>
@@ -521,7 +635,7 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "pwn GDB调试指南" -->
+    <!-- id: "PWN GDB调试指南" -->
     var gitment = new Gitment({
       id: "20241106161816",
       owner: 'NEWYM',
