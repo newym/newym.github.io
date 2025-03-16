@@ -382,6 +382,108 @@
 
 
   
+    <article id="post-GDB调试指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/" target="_blank">PWN题GDB调试指南</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/" class="archive-article-date">
+        <time datetime="2024-11-06T08:18:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-11-06</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <p>最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试</p>
+<h3 id="作者废话："><a href="#作者废话：" class="headerlink" title="作者废话："></a>作者废话：</h3><p>对于pwn题来说，调试是一个入门的关卡，会调试的pwn学者才算真正的入门pwn，但调试并不是一种技巧或一种理论并不是一蹴而就或者幡然醒悟，他是我们在学习pwn过程中将我们所学到的理论进行实践并积累经验的过程，你会在调试的过程中发现你学到的哪些知识（例如：栈溢出、shellcode、栈迁移等等）是如何实现的，并感叹前辈们设计出如此精妙的手法进行攻击，在漫漫的学习历程中你会一边觉得调试很无聊总是对着一堆代码进行调试；但同时你又会感觉很有趣，你利用自己一点点构造的程序输入，一点点将程序腐蚀达到了自己想要的效果，像攻城一样，看似坚不可摧的程序其实也不堪一击，pwn的枯燥在于此，pwn的乐趣也在于此，初学者莫要丧气，多尝试多思考。</p>
+<p>文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项</p>
+<p>该文章如果需要会持续更新</p>
+    
+    <a class="article-more-a" href="/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/#more">more >></a>
+    
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+    
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2024强网杯pwn部分wp" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -481,7 +583,7 @@
 
 
   
-    <article id="post-GDB调试指南" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-unlink" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
@@ -489,7 +591,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/" target="_blank">PWN题GDB调试指南</a>
+	  <a class="article-title" href="/2024/11/06/unlink/" target="_blank">UNLINK</a>
   
     </h1>
   
@@ -497,7 +599,7 @@
 
   
   
-<a href="/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/" class="archive-article-date">
+<a href="/2024/11/06/unlink/" class="archive-article-date">
         <time datetime="2024-11-06T08:18:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2024-11-06</time>
 </a>
 
@@ -510,12 +612,9 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <p>最近学弟也开始学pwn了，回忆当初自己学pwn时，在调试这方面屡屡碰壁，决定出一个gdb调试指南，便于新生们更好的入门gdb调试</p>
-<h3 id="作者废话："><a href="#作者废话：" class="headerlink" title="作者废话："></a>作者废话：</h3><p>对于pwn题来说，调试是一个入门的关卡，会调试的pwn学者才算真正的入门pwn，但调试并不是一种技巧或一种理论并不是一蹴而就或者幡然醒悟，他是我们在学习pwn过程中将我们所学到的理论进行实践并积累经验的过程，你会在调试的过程中发现你学到的哪些知识（例如：栈溢出、shellcode、栈迁移等等）是如何实现的，并感叹前辈们设计出如此精妙的手法进行攻击，在漫漫的学习历程中你会一边觉得调试很无聊总是对着一堆代码进行调试；但同时你又会感觉很有趣，你利用自己一点点构造的程序输入，一点点将程序腐蚀达到了自己想要的效果，像攻城一样，看似坚不可摧的程序其实也不堪一击，pwn的枯燥在于此，pwn的乐趣也在于此，初学者莫要丧气，多尝试多思考。</p>
-<p>文中将包含常用gdb调试指令，以及基础题型调试的关注重点和注意事项</p>
-<p>该文章如果需要会持续更新</p>
+    <p>我们伪造一个fake chunk，修改其fd为p-0x18（p储存堆块指针的地址，一般为bss段),修改bk为p-0x10,绕过保护，在形成双链表的过程中，修改了p-&gt;p-0x18导致我们可以修改p-&gt;任意地址，进行一次任意地址写，可以修改free为system。</p>
     
-    <a class="article-more-a" href="/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/#more">more >></a>
+    <a class="article-more-a" href="/2024/11/06/unlink/#more">more >></a>
     
     
 
@@ -532,7 +631,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">文章</a>
         		</li>
       		
 		</ul>
@@ -544,7 +643,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/随笔//" class="article-tag-list-link color3">随笔</a>
+        			<a href="/categories/文章//" class="article-tag-list-link color3">文章</a>
         		</li>
       		
 		</ul>
@@ -553,7 +652,7 @@
 
     
     <p class="article-more-link">
-      <a class="article-more-a" href="/2024/11/06/GDB%E8%B0%83%E8%AF%95%E6%8C%87%E5%8D%97/">展开全文 >></a>
+      <a class="article-more-a" href="/2024/11/06/unlink/">展开全文 >></a>
     </p>
     
 
@@ -712,11 +811,15 @@
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">wp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">文章</a>
               </li>
             
             <div class="clearfix"></div>
