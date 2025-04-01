@@ -6,39 +6,39 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://example.com">
-  <title>Linux core dump pwn题 | NEWYM</title>
+  <title>core dump pwn题 | NEWYM</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-  <meta name="description" content="Linux core dump pwn题">
+  <meta name="description" content="前言：挺有意思的，打外国的比赛总是能学到一些奇奇怪怪有趣的知识，题中给了一个core的文件，也可以叫做保留进程当前状态的快照文件，通过观察这一瞬时的调试信息，推理程序代码，寻找有用信息进行攻击，也给以后出题提供了新的思路，有点像盲打，但也因此我觉得过于复杂的题就不适合这种出法了，毕竟调试是pwn的命根子了。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Linux core dump pwn题">
+<meta property="og:title" content="core dump pwn题">
 <meta property="og:url" content="http://example.com/2025/03/31/Linux%20core%20dump%20pwn%E9%A2%98/index.html">
 <meta property="og:site_name" content="NEWYM">
-<meta property="og:description" content="Linux core dump pwn题">
+<meta property="og:description" content="前言：挺有意思的，打外国的比赛总是能学到一些奇奇怪怪有趣的知识，题中给了一个core的文件，也可以叫做保留进程当前状态的快照文件，通过观察这一瞬时的调试信息，推理程序代码，寻找有用信息进行攻击，也给以后出题提供了新的思路，有点像盲打，但也因此我觉得过于复杂的题就不适合这种出法了，毕竟调试是pwn的命根子了。">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743426482554.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743426588934.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743426809662.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743427197861.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743427408532.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743427928669.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743427972232.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743428000617.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743428414334.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743427756868.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743428623068.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743430237280.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743430835305.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743430887795.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743430336723.png">
-<meta property="og:image" content="d:\user\Desktop\boke\source\phto\1743430533235.png">
+<meta property="og:image" content="http://example.com/phto/1743426482554.png">
+<meta property="og:image" content="http://example.com/phto/1743426588934.png">
+<meta property="og:image" content="http://example.com/phto/1743426809662.png">
+<meta property="og:image" content="http://example.com/phto/1743427197861.png">
+<meta property="og:image" content="http://example.com/phto/1743427408532.png">
+<meta property="og:image" content="http://example.com/phto/1743427928669.png">
+<meta property="og:image" content="http://example.com/phto/1743427972232.png">
+<meta property="og:image" content="http://example.com/phto/1743428000617.png">
+<meta property="og:image" content="http://example.com/phto/1743428414334.png">
+<meta property="og:image" content="http://example.com/phto/1743427756868.png">
+<meta property="og:image" content="http://example.com/phto/1743428623068.png">
+<meta property="og:image" content="http://example.com/phto/1743430237280.png">
+<meta property="og:image" content="http://example.com/phto/1743430835305.png">
+<meta property="og:image" content="http://example.com/phto/1743430887795.png">
+<meta property="og:image" content="http://example.com/phto/1743430336723.png">
+<meta property="og:image" content="http://example.com/phto/1743430533235.png">
 <meta property="article:published_time" content="2025-03-31T14:23:00.000Z">
-<meta property="article:modified_time" content="2025-03-31T14:24:15.584Z">
+<meta property="article:modified_time" content="2025-04-01T10:22:11.992Z">
 <meta property="article:author" content="NEWYM">
 <meta property="article:tag" content="随笔">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:\user\Desktop\boke\source\phto\1743426482554.png">
+<meta name="twitter:image" content="http://example.com/phto/1743426482554.png">
   
     <link rel="alternative" href="/atom.xml" title="NEWYM" type="application/atom+xml">
   
@@ -206,7 +206,7 @@
   
   
     <h1 class="article-title" itemprop="name">
-      Linux core dump pwn题
+      core dump pwn题
     </h1>
   
 
@@ -252,10 +252,9 @@
   
   <div class="article-entry" itemprop="articleBody">
     
-    <h1 id="Linux-core-dump-pwn题"><a href="#Linux-core-dump-pwn题" class="headerlink" title="Linux core dump pwn题"></a>Linux core dump pwn题</h1><span id="more"></span>
-
-<ul>
+    <ul>
 <li><p><strong>前言：</strong>挺有意思的，打外国的比赛总是能学到一些奇奇怪怪有趣的知识，题中给了一个core的文件，也可以叫做保留进程当前状态的快照文件，通过观察这一瞬时的调试信息，推理程序代码，寻找有用信息进行攻击，也给以后出题提供了新的思路，有点像盲打，但也因此我觉得过于复杂的题就不适合这种出法了，毕竟调试是pwn的命根子了。</p>
+<span id="more"></span>
 </li>
 <li><p><strong>简述：</strong>Linux core dump（核心转储）是指当一个程序异常终止时（比如由于段错误、非法指令等），操作系统会将该程序的内存内容（包括程序的代码段、数据段、堆栈等信息）以及进程的当前状态（如寄存器的值等）保存到一个文件中。这个文件通常被称为core文件。</p>
 </li>
@@ -267,42 +266,42 @@
 <ul>
 <li>我们放入到idea中，会发现没有符号表的，以至于连主函数都是很难找到的</li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743426482554.png" alt="1743426482554"></p>
+<p><img src="/../phto/1743426482554.png" alt="1743426482554"></p>
 <ul>
 <li>这里是主函数，即使你找到主函数的话也无法直接看懂程序，它只是保存这个瞬间的进程的状态文件</li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743426588934.png" alt="1743426588934"></p>
+<p><img src="/../phto/1743426588934.png" alt="1743426588934"></p>
 <ul>
 <li>利用gdb -c .&#x2F;文件进行查看调试信息，但是我们无法往后调试，这时候就要大胆的去猜测，我们停留在的这个位置是main函数了，因为我觉得出题人要是不给我们放在main函数，也是够歹毒的了，然后根据远程的回显去判断函数的功能，当然也可以先借助ai分析一下</li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743426809662.png" alt="1743426809662"></p>
+<p><img src="/../phto/1743426809662.png" alt="1743426809662"></p>
 <ul>
 <li>查看main函数的汇编，根据远程回显，进行大致功能的分析</li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743427197861.png" alt="1743427197861"></p>
+<p><img src="/../phto/1743427197861.png" alt="1743427197861"></p>
 <ul>
 <li>远程回显</li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743427408532.png" alt="1743427408532"></p>
+<p><img src="/../phto/1743427408532.png" alt="1743427408532"></p>
 <ul>
 <li>分析：两次打印，一次无限制读入</li>
 <li>打印函数，盲猜puts，因为没对rsi操作</li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743427928669.png" alt="1743427928669"></p>
+<p><img src="/../phto/1743427928669.png" alt="1743427928669"></p>
 <ul>
 <li>但是你查看打印内容的时候是没东西的，这个片段是无效的</li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743427972232.png" alt="1743427972232"></p>
-<p><img src="D:\user\Desktop\boke\source\phto\1743428000617.png" alt="1743428000617"></p>
+<p><img src="/../phto/1743427972232.png" alt="1743427972232"></p>
+<p><img src="/../phto/1743428000617.png" alt="1743428000617"></p>
 <ul>
 <li>其实真实的字符串存在于 0x402004+0x1000  0x402017+0x1000的位置存储的</li>
 <li>原因：数据段的静态地址（<code>0x402000</code>）和动态加载地址（<code>0x403000</code>）不一致</li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743428414334.png" alt="1743428414334"></p>
+<p><img src="/../phto/1743428414334.png" alt="1743428414334"></p>
 <ul>
 <li>读入函数，盲猜gets，因为没对rsi操作</li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743427756868.png" alt="1743427756868"></p>
+<p><img src="/../phto/1743427756868.png" alt="1743427756868"></p>
 <ul>
 <li>基本功能已经猜测完毕了，那就实操试试吧，很显然程序应该是存在栈溢出的，但我们没法本地调试，我们需要直接对远程进行攻击，先溢出回main函数验证猜想</li>
 </ul>
@@ -311,7 +310,7 @@
 <ul>
 <li>又重新进行了main函数那么说明了我们猜想的正确，那接下来就进行的rop攻击就行</li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743428623068.png" alt="1743428623068"></p>
+<p><img src="/../phto/1743428623068.png" alt="1743428623068"></p>
 <ul>
 <li>最终的exp</li>
 </ul>
@@ -357,7 +356,7 @@
 </ul>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps -aux | grep &#x27;文件名&#x27;</span><br></pre></td></tr></table></figure>
 
-<p><img src="D:\user\Desktop\boke\source\phto\1743430237280.png" alt="1743430237280"></p>
+<p><img src="/../phto/1743430237280.png" alt="1743430237280"></p>
 <ul>
 <li><blockquote>
 <p>生成cord文件</p>
@@ -368,20 +367,20 @@
 <p>在gdb中找到合适的位置进行生成</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">generate-core-file /tmp/core.12587</span><br></pre></td></tr></table></figure>
 
-<p><img src="D:\user\Desktop\boke\source\phto\1743430835305.png" alt="1743430835305"></p>
+<p><img src="/../phto/1743430835305.png" alt="1743430835305"></p>
 <p>生成的cord文件调试，跟我们控制的位置一样</p>
-<p><img src="D:\user\Desktop\boke\source\phto\1743430887795.png" alt="1743430887795"></p>
+<p><img src="/../phto/1743430887795.png" alt="1743430887795"></p>
 <p><strong>第二种:</strong></p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gcore pid</span><br></pre></td></tr></table></figure>
 
-<p><img src="D:\user\Desktop\boke\source\phto\1743430336723.png" alt="1743430336723"></p>
+<p><img src="/../phto/1743430336723.png" alt="1743430336723"></p>
 <ul>
 <li><p>这样你就生成了一个core文件，但这个不太推荐，因为这个进程信息并不是我们控制好的，我们也不知道在哪，还是比较推荐在gdb中调试到自己想要展现的位置然后生成</p>
 </li>
 <li><p>调试cord文件</p>
 </li>
 </ul>
-<p><img src="D:\user\Desktop\boke\source\phto\1743430533235.png" alt="1743430533235"></p>
+<p><img src="/../phto/1743430533235.png" alt="1743430533235"></p>
 
     
 
@@ -396,7 +395,7 @@
         </li>
         <li>
           <strong>本文链接：</strong>
-          <a href="http://example.com/2025/03/31/Linux core dump pwn题/" title="Linux core dump pwn题" target="_blank">http://example.com/2025/03/31/Linux core dump pwn题/</a>
+          <a href="http://example.com/2025/03/31/Linux core dump pwn题/" title="core dump pwn题" target="_blank">http://example.com/2025/03/31/Linux core dump pwn题/</a>
         </li>
         
         <li>
@@ -540,7 +539,7 @@
     <script src="/lib/giteement.browser.js"></script>
   
   <script>
-  <!-- id: "Linux core dump pwn题" -->
+  <!-- id: "core dump pwn题" -->
   var giteement = new Giteement({
     id: '20250331222300',
     owner: 'NEWYM',
@@ -567,7 +566,7 @@
     <script src="/lib/gitment.js"></script>
   
   <script>
-    <!-- id: "Linux core dump pwn题" -->
+    <!-- id: "core dump pwn题" -->
     var gitment = new Gitment({
       id: "20250331222300",
       owner: 'NEWYM',
@@ -825,11 +824,11 @@ body.dark .ipage {
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+                <a href="javascript:void(0)" class="js-tag color3">wp</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">wp</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
